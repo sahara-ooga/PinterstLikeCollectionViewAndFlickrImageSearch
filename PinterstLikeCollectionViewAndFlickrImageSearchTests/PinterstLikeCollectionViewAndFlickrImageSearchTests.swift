@@ -22,8 +22,8 @@ class PinterstLikeCollectionViewAndFlickrImageSearchTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        self.callApiExpectation = self.expectation(description: "CallApiDelegate")
+    func testAPIAccess() {
+        self.callApiExpectation = self.expectation(description: "CallFlickrImageSearchApiAccess")
         
         // APIクライアントの生成
         let client = FlickrClient()
