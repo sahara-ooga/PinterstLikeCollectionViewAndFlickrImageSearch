@@ -5,6 +5,7 @@
 //  Created by yuu ogasawara on 2017/05/26.
 //  Copyright © 2017年 stv. All rights reserved.
 //
+import UIKit
 
 final class FlickrAPI {
     struct SearchPhotos:Request {
@@ -31,22 +32,33 @@ final class FlickrAPI {
         }
     }
     
-//    struct SearchUsers:Request {
-//        let text:String
-//
-//        typealias Response = SearchResponse<User>
-//
-//        var method: HTTPMethod{
-//            return .get
-//        }
-//
-//        var path: String{
-//            return "/search/users"
-//        }
-//
-//        var parameters: Any?{
-//            return ["q":text]
-//        }
-//
-//    }
+    struct FetchPhoto:Request {
+        typealias Response = FlickrImageFetchResponse
+        var baseURL: URL    //image url which is formed based on image search api response
+        
+        var method: HTTPMethod{
+            return .get
+        }
+        
+        var path: String{
+            return ""
+        }
+        
+        var parameters: Any? = nil
+        
+        func response(from data:Data,
+                      urlResponse:URLResponse) throws -> Response {
+            
+            if case (200..<300)? = (urlResponse as? HTTPURLResponse)?.statusCode {
+//                //JSONからモデルをインスタンス化
+//                return try JSONDecoder().decode(FlickrImageSearchResponse.self,
+//                                                from: data) as! Self.Response
+                return Response(image: UIImage(data: data))
+            } else {
+                //JSONからAPIエラーをインスタンス化
+                throw try APIError(from: data as! Decoder)
+            }
+            
+        }
+    }
 }

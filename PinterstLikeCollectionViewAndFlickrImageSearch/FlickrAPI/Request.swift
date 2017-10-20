@@ -18,6 +18,8 @@ protocol Request {
     //パラメータが必須でないAPIがあるのでオプショナル型
     var parameters:Any? { get }
     
+    func response(from data:Data,
+                  urlResponse:URLResponse) throws -> Response
 }
 
 extension Request{
@@ -47,13 +49,14 @@ extension Request{
         
         return urlRequest
     }
-    
+
     func response(from data:Data,
                   urlResponse:URLResponse) throws -> Response {
 
         if case (200..<300)? = (urlResponse as? HTTPURLResponse)?.statusCode {
             //JSONからモデルをインスタンス化
-            return try JSONDecoder().decode(FlickrImageSearchResponse.self, from: data) as! Self.Response
+            return try JSONDecoder().decode(FlickrImageSearchResponse.self,
+                                            from: data) as! Self.Response
         } else {
             //JSONからAPIエラーをインスタンス化
             throw try APIError(from: data as! Decoder)
