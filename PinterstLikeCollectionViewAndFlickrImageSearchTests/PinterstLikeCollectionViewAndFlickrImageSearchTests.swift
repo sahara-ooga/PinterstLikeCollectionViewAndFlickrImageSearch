@@ -10,6 +10,7 @@ import XCTest
 @testable import PinterstLikeCollectionViewAndFlickrImageSearch
 
 class PinterstLikeCollectionViewAndFlickrImageSearchTests: XCTestCase {
+    var callApiExpectation: XCTestExpectation? = nil
     
     override func setUp() {
         super.setUp()
@@ -22,8 +23,32 @@ class PinterstLikeCollectionViewAndFlickrImageSearchTests: XCTestCase {
     }
     
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        self.callApiExpectation = self.expectation(description: "CallApiDelegate")
+        
+        // APIクライアントの生成
+        let client = FlickrClient()
+        
+        //リクエストの発行
+        let request = FlickrAPI.SearchPhotos(text: "text",
+                                             page: 1,
+                                             perPage: 50)
+        
+        // リクエストの送信
+        client.send(request: request){
+            result in
+            XCTAssertNotNil(result)
+            switch result {
+            case let .success(response):
+                print(response)
+            case let .failure(error):
+                //エラー詳細を出力
+                print(error)
+            }
+            
+            self.callApiExpectation?.fulfill()
+        }
+        
+        self.waitForExpectations(timeout: 20, handler: nil)
     }
     
     func testPerformanceExample() {
