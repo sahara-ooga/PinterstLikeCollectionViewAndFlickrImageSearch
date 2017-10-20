@@ -21,11 +21,9 @@
 		E04FA2D71F99859A00567838 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FA2C91F99859A00567838 /* HTTPMethod.swift */; };
 		E04FA2D81F99859A00567838 /* JSONDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FA2CA1F99859A00567838 /* JSONDecodable.swift */; };
 		E04FA2D91F99859A00567838 /* JSONDecodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FA2CB1F99859A00567838 /* JSONDecodeError.swift */; };
-		E04FA2DA1F99859A00567838 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FA2CC1F99859A00567838 /* Repository.swift */; };
 		E04FA2DB1F99859A00567838 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FA2CD1F99859A00567838 /* Request.swift */; };
 		E04FA2DC1F99859A00567838 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FA2CE1F99859A00567838 /* Result.swift */; };
 		E04FA2DD1F99859A00567838 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FA2CF1F99859A00567838 /* SearchResponse.swift */; };
-		E04FA2DE1F99859A00567838 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FA2D01F99859A00567838 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,11 +55,9 @@
 		E04FA2C91F99859A00567838 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		E04FA2CA1F99859A00567838 /* JSONDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONDecodable.swift; sourceTree = "<group>"; };
 		E04FA2CB1F99859A00567838 /* JSONDecodeError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONDecodeError.swift; sourceTree = "<group>"; };
-		E04FA2CC1F99859A00567838 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		E04FA2CD1F99859A00567838 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		E04FA2CE1F99859A00567838 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		E04FA2CF1F99859A00567838 /* SearchResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
-		E04FA2D01F99859A00567838 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,11 +130,9 @@
 				E04FA2C91F99859A00567838 /* HTTPMethod.swift */,
 				E04FA2CA1F99859A00567838 /* JSONDecodable.swift */,
 				E04FA2CB1F99859A00567838 /* JSONDecodeError.swift */,
-				E04FA2CC1F99859A00567838 /* Repository.swift */,
 				E04FA2CD1F99859A00567838 /* Request.swift */,
 				E04FA2CE1F99859A00567838 /* Result.swift */,
 				E04FA2CF1F99859A00567838 /* SearchResponse.swift */,
-				E04FA2D01F99859A00567838 /* User.swift */,
 			);
 			path = FlickrAPI;
 			sourceTree = "<group>";
@@ -250,7 +244,6 @@
 				E04FA2DB1F99859A00567838 /* Request.swift in Sources */,
 				E04FA2D81F99859A00567838 /* JSONDecodable.swift in Sources */,
 				E04FA2D21F99859A00567838 /* ClientError.swift in Sources */,
-				E04FA2DE1F99859A00567838 /* User.swift in Sources */,
 				E04FA2DC1F99859A00567838 /* Result.swift in Sources */,
 				E04FA2D51F99859A00567838 /* FlickrClient.swift in Sources */,
 				E04FA2D91F99859A00567838 /* JSONDecodeError.swift in Sources */,
@@ -260,7 +253,6 @@
 				E04FA2D61F99859A00567838 /* FlickrImageSearchResponse.swift in Sources */,
 				E04FA2DD1F99859A00567838 /* SearchResponse.swift in Sources */,
 				E04FA2D11F99859A00567838 /* APIError.swift in Sources */,
-				E04FA2DA1F99859A00567838 /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
