@@ -40,9 +40,7 @@ final class FlickrAPI {
             return .get
         }
         
-        var path: String{
-            return ""
-        }
+        var path: String
         
         var parameters: Any? = nil
         
