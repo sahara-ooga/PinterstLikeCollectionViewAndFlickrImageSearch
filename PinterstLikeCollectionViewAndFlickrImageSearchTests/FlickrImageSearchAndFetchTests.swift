@@ -1,6 +1,6 @@
 //
-//  PinterstLikeCollectionViewAndFlickrImageSearchTests.swift
-//  PinterstLikeCollectionViewAndFlickrImageSearchTests
+//  FlickrImageSearchAndFetchTests.swift
+//  FlickrImageSearchAndFetchTests
 //
 //  Created by Yuu Ogasa on 2017/10/20.
 //  Copyright © 2017年 SundayCarpenter. All rights reserved.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import PinterstLikeCollectionViewAndFlickrImageSearch
 
-class PinterstLikeCollectionViewAndFlickrImageSearchTests: XCTestCase {
+class FlickrImageSearchAndFetchTests: XCTestCase {
     var callApiExpectation: XCTestExpectation? = nil
     
     override func setUp() {
