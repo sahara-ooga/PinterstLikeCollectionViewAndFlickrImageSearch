@@ -2,6 +2,9 @@
 //  GitHubClient.swift
 //  GithubSearchRepository
 //
+//  wrap URLSession.
+//
+//
 //  Created by yuu ogasawara on 2017/05/26.
 //  Copyright © 2017年 stv. All rights reserved.
 //
