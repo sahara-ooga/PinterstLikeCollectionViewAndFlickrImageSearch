@@ -11,7 +11,8 @@ import XCTest
 
 class FlickrAPIManagerTest: XCTestCase {
     let apiManager = FlickrAPIManager()
-    
+    var callApiExpectation: XCTestExpectation? = nil
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -30,17 +31,41 @@ class FlickrAPIManagerTest: XCTestCase {
         let page = 1
         let perPage = 50
         //perPage default value = 50
+        self.callApiExpectation = self.expectation(description: "CallFlickrImageSearchApiAccess")
+
         apiManager.search(searchWord,to:page, perPage:perPage){//argument is FlickrImageSearchResponse
             XCTAssertNotNil($0)
+            self.callApiExpectation?.fulfill()
         }
-
+        self.waitForExpectations(timeout: 20, handler: nil)
     }
     
     func testFetchPhotos() {
         let photo = TestCommonDefines.photo
-        let photos = FlickrImageSearchResponse.Photos(page: 1, pages: 3, perpage: 50, total: "150", photo: [photo])
-        let searchResponse = FlickrImageSearchResponse(photos: photos, stat: "1")
+        self.callApiExpectation = self.expectation(description: "CallFlickrImageSearchApiAccess")
         
+        apiManager.fetch(to: URL(string:photo.imageURL)!){image in
+            guard image != nil else {
+                            XCTFail("no images.")
+                            return
+                        }
+            self.callApiExpectation?.fulfill()
+                    }
+        
+        self.waitForExpectations(timeout: 20, handler: nil)
+
     }
     
+    func testFetch() {
+        let photo = TestCommonDefines.photo
+        let photos = Photos(page: 1, pages: 1, perpage: 1, total: "1", photo: [photo])
+        let response = FlickrImageSearchResponse(photos: photos, stat: "ok")
+        self.callApiExpectation = self.expectation(description: "CallFlickrImageSearchApiAccess")
+        apiManager.fetch(for: response){images in
+            XCTAssertFalse((images!.isEmpty))
+            self.callApiExpectation?.fulfill()
+        }
+        self.waitForExpectations(timeout: 20, handler: nil)
+
+    }
 }

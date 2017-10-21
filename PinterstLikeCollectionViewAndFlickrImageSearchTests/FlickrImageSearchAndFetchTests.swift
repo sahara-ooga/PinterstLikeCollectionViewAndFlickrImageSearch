@@ -54,16 +54,16 @@ class FlickrImageSearchAndFetchTests: XCTestCase {
     func testFetchImage(){
         self.callApiExpectation = self.expectation(description: "CallFlickrImageFetchApiAccess")
         
-        // APIクライアントの生成
-        let client = FlickrClient()
-        
         //リクエストの発行
-        let photo = FlickrImageSearchResponse.Photos.Photo(id: "37754664646", owner: "8467288@N02", secret: "7f8002d303", server: "4510", farm: 5, title: "DSC02871", ispublic: 1, isfriend: 0, isfamily: 0)
-        let baseURL = URL(string:"https://farm" + String(photo.farm) + ".staticflickr.com")!
-        let path = photo.server + "/" + photo.id + "_" + photo.secret + ".jpg"
+        let photo = Photo(id: "37754664646", owner: "8467288@N02", secret: "7f8002d303", server: "4510", farm: 5, title: "DSC02871", ispublic: 1, isfriend: 0, isfamily: 0)
+        let baseURL = URL(string:photo.imageBaseURL)!
+        let path = photo.imagePath
         let request = FlickrAPI.FetchPhoto(baseURL: baseURL,
                                            path:path,
                                            parameters: nil)
+        // APIクライアントの生成
+        let client = FlickrClient()
+        
         // リクエストの送信
         client.send(request: request){
             //In this closure, transmission　has ended.
@@ -80,7 +80,7 @@ class FlickrImageSearchAndFetchTests: XCTestCase {
                 self.callApiExpectation?.fulfill()
         }
         
-        self.waitForExpectations(timeout: 20, handler: nil)
+        self.waitForExpectations(timeout: 40, handler: nil)
     }
     
 }

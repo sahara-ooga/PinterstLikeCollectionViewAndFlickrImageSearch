@@ -34,6 +34,7 @@ final class FlickrAPI {
     
     struct FetchPhoto:Request {
         typealias Response = FlickrImageFetchResponse
+        
         var baseURL: URL    //image url which is formed based on image search api response
         
         var method: HTTPMethod{
@@ -51,7 +52,8 @@ final class FlickrAPI {
 //                //JSONからモデルをインスタンス化
 //                return try JSONDecoder().decode(FlickrImageSearchResponse.self,
 //                                                from: data) as! Self.Response
-                return Response(image: UIImage(data: data))
+                let image = UIImage(data: data)!
+                return Response(image: image)
             } else {
                 //JSONからAPIエラーをインスタンス化
                 throw try APIError(from: data as! Decoder)
