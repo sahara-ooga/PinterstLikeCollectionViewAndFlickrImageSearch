@@ -22,7 +22,7 @@ class FlickrImageSearchAndFetchTests: XCTestCase {
         super.tearDown()
     }
     
-    func testAPIAccess() {
+    func testSearchPhotos() {
         self.callApiExpectation = self.expectation(description: "CallFlickrImageSearchApiAccess")
         
         // APIクライアントの生成
