@@ -100,10 +100,10 @@ extension FlickrAPIManager{
                                     completionHandler: {data,response,error in
                                         
                                         switch (data,response,error){
-                                        case (_, _, let error?):
-                                            //completion(Result(error: .connectionError(error)))
-                                            completion(nil)
-                                        case (let data?, let response?, _):
+//                                        case (_, _, let error?):
+//                                            //completion(Result(error: .connectionError(error)))
+//                                            completion(nil)
+                                        case (let data?, _?, _):
                                             guard let image = UIImage(data: data) else{
                                                 completion(nil)
                                                 return
