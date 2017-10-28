@@ -18,15 +18,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="376" height="499"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="該当する写真がありません。検索ワードを変更してお試しください。" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6j-QK-fDu">
-                        <rect key="frame" x="44" y="15" width="320" height="464"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="該当する写真がありません。検索ワードを変更してお試しください。" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6j-QK-fDu">
+                        <rect key="frame" x="-81" y="239.5" width="538" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </view>
+            <constraints>
+                <constraint firstItem="v6j-QK-fDu" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="JJM-up-0Et"/>
+                <constraint firstItem="v6j-QK-fDu" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="x9K-xn-86J"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="376" height="499"/>
             <point key="canvasLocation" x="-1027" y="218.5"/>
