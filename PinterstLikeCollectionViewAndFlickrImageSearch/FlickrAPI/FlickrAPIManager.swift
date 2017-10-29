@@ -1,5 +1,6 @@
 //
 //  FlickrAPIManager.swift
+//  Frontend of Flickr API.
 //  PinterstLikeCollectionViewAndFlickrImageSearch
 //
 //  Created by yogasawara@stv on 2017/10/21.
