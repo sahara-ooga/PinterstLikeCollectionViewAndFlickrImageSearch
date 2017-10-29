@@ -20,8 +20,15 @@ class FlickrAPIManager {
 // MARK: - Image search and Fetch
 extension FlickrAPIManager{
     
-    
-    func search(_ keyWord:String,to page:Int = 1,
+    /// Search photos related to keyWord via FlickrAPI
+    ///
+    /// - Parameters:
+    ///   - keyWord: search keyword
+    ///   - page: appoint position of search results
+    ///   - perPage: designates number of search results
+    ///   - completionHandler: specify management when reseived search results.
+    func search(_ keyWord:String,
+                to page:Int = 1,
                 perPage:Int = CommonDefines.perPage,
                 completionHandler:@escaping (Result<FlickrImageSearchResponse,ClientError>) -> Void) {
         // APIクライアントの生成
@@ -39,6 +46,11 @@ extension FlickrAPIManager{
         }
     }
     
+    /// acquire images based on flickr image search response.
+    ///
+    /// - Parameters:
+    ///   - searchResponse: Flickr image search response
+    ///   - completionHandler: manage images, which flickr image search shows
     func fetch(for searchResponse:FlickrImageSearchResponse,
                completionHandler:@escaping ([UIImage]?)->Void) {
         let photos = searchResponse.photos.photo
