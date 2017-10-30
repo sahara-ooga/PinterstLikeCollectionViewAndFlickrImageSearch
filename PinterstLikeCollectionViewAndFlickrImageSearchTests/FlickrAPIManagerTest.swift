@@ -95,7 +95,8 @@ class FlickrAPIManagerTest: XCTestCase {
             case .success(let images):
                 XCTAssert(images.count >= expectedNumOfImage)
                 self.callApiExpectation?.fulfill()
-            default:
+            case .failure(let error):
+                print(error)
                 XCTFail("fail to get images from keyword.")
             }
             
