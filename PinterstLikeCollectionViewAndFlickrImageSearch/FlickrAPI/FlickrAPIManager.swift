@@ -130,4 +130,21 @@ extension FlickrAPIManager{
         
         task.resume()
     }
+    
+    func getImage(of keyword:String,
+                  completion:@escaping (Result<[UIImage],ClientError>) -> Void) {
+        //まず画像の情報を取得
+        search(keyword){result in
+            switch result{
+            case let .success(response):
+                print(response)
+                //画像の情報を画像に変換する
+                self.fetch(for: response){result in
+                    completion(result)
+                }
+            case let .failure(error):
+                completion(.failure(error))
+        }
+    }
+}
 }

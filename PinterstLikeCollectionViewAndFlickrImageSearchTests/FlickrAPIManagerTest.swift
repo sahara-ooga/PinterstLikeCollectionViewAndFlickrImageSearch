@@ -81,4 +81,27 @@ class FlickrAPIManagerTest: XCTestCase {
         self.waitForExpectations(timeout: 20, handler: nil)
 
     }
+    
+    func testGetImageOfKeyword() {
+        //fetch images from keyword
+        let keyword = "tokyo"
+        let expectedNumOfImage = 50
+        
+        self.callApiExpectation =
+            self.expectation(description: "Get image from keyword")
+
+        apiManager.getImage(of:keyword){ result in
+            switch result{
+            case .success(let images):
+                XCTAssert(images.count >= expectedNumOfImage)
+                self.callApiExpectation?.fulfill()
+            default:
+                XCTFail("fail to get images from keyword.")
+            }
+            
+        }
+
+        self.waitForExpectations(timeout: 20, handler: nil)
+    }
 }
+
