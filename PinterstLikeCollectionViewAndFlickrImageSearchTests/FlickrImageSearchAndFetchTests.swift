@@ -55,7 +55,16 @@ class FlickrImageSearchAndFetchTests: XCTestCase {
         self.callApiExpectation = self.expectation(description: "CallFlickrImageFetchApiAccess")
         
         //リクエストの発行
-        let photo = Photo(id: "37754664646", owner: "8467288@N02", secret: "7f8002d303", server: "4510", farm: 5, title: "DSC02871", ispublic: 1, isfriend: 0, isfamily: 0)
+        let photo = Photo(id: "37754664646",
+                          owner: "8467288@N02",
+                          secret: "7f8002d303",
+                          server: "4510",
+                          farm: 5,
+                          title: "DSC02871",
+                          ispublic: 1,
+                          isfriend: 0,
+                          isfamily: 0)
+        
         let baseURL = URL(string:photo.imageBaseURL)!
         let path = photo.imagePath
         let request = FlickrAPI.FetchPhoto(baseURL: baseURL,
@@ -82,5 +91,4 @@ class FlickrImageSearchAndFetchTests: XCTestCase {
         
         self.waitForExpectations(timeout: 40, handler: nil)
     }
-    
 }
