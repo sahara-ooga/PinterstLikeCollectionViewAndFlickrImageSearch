@@ -33,10 +33,17 @@ class FlickrAPIManagerTest: XCTestCase {
         //perPage default value = 50
         self.callApiExpectation = self.expectation(description: "CallFlickrImageSearchApiAccess")
 
-        apiManager.search(searchWord,to:page, perPage:perPage){//argument is FlickrImageSearchResponse
-            XCTAssertNotNil($0)
-            self.callApiExpectation?.fulfill()
+        apiManager.search(searchWord,to:page, perPage:perPage){result in
+            
+            switch result{
+            case .success(let response):
+                XCTAssertEqual(response.photos.photoInfos.count,perPage)
+                self.callApiExpectation?.fulfill()
+            default:
+                XCTFail("fail to search keyword.")
+            }
         }
+        
         self.waitForExpectations(timeout: 20, handler: nil)
     }
     
@@ -58,12 +65,18 @@ class FlickrAPIManagerTest: XCTestCase {
     
     func testFetch() {
         let photo = TestCommonDefines.photo
-        let photos = Photos(page: 1, pages: 1, perpage: 1, total: "1", photo: [photo])
+        let photos = Photos(page: 1, pages: 1, perpage: 1, total: "1", photoInfos: [photo])
         let response = FlickrImageSearchResponse(photos: photos, stat: "ok")
         self.callApiExpectation = self.expectation(description: "CallFlickrImageSearchApiAccess")
-        apiManager.fetch(for: response){images in
-            XCTAssertFalse((images!.isEmpty))
-            self.callApiExpectation?.fulfill()
+        apiManager.fetch(for: response){result in
+            switch result{
+            case .success(let images):
+                XCTAssertFalse((images.isEmpty))
+                self.callApiExpectation?.fulfill()
+            default:
+                XCTFail("error at fetching for response")
+            }
+            
         }
         self.waitForExpectations(timeout: 20, handler: nil)
 

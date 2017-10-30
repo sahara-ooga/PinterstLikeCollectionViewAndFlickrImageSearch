@@ -53,11 +53,12 @@ extension FlickrAPIManager{
     ///   - searchResponse: Flickr image search response
     ///   - completionHandler: manage images, which flickr image search shows
     func fetch(for searchResponse:FlickrImageSearchResponse,
-               completionHandler:@escaping ([UIImage]?)->Void) {
-        let photos = searchResponse.photos.photo
+               completionHandler:@escaping (Result<[UIImage],ClientError>)->Void) {
+        let photoInfos = searchResponse.photos.photoInfos
         
-        if photos.isEmpty {
-            completionHandler(nil)
+        if photoInfos.isEmpty {
+            let error = ClientError.responseParseError(ResponseError(message: "photoInfos is empty"))
+            completionHandler(Result(error: error))
         }
         
         var images = [UIImage]()
@@ -68,7 +69,7 @@ extension FlickrAPIManager{
         let dispatchGroup = DispatchGroup()
         let dispatchQueue = DispatchQueue(label: "queue", attributes: .concurrent)
 
-        for photo in photos{
+        for photo in photoInfos{
             dispatchGroup.enter()
             dispatchQueue.async(group: dispatchGroup){
                // [weak self] in
@@ -101,7 +102,7 @@ extension FlickrAPIManager{
         
         //have completionHandler wait for fetching images
         dispatchGroup.notify(queue: .main) {
-            completionHandler(images)
+            completionHandler(Result(value: images))
         }
     }
     
