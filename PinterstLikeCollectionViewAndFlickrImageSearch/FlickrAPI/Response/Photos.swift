@@ -13,5 +13,13 @@ struct Photos: Codable {
     let pages: Int
     let perpage: Int
     let total: String
-    let photo:[Photo]
+    let photoInfos:[Photo]
+    
+    private enum CodingKeys:String,CodingKey{
+        case page
+        case pages
+        case perpage
+        case total
+        case photoInfos = "photo" //外部キーとのマッピングを明示的に指定
+    }
 }
