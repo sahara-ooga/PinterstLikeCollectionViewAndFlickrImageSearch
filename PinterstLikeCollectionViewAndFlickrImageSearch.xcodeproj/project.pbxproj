@@ -17,6 +17,7 @@
 		1063123A1F9AECF80002400D /* CommonDefines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106312391F9AECF70002400D /* CommonDefines.swift */; };
 		1078A33F1F9B8494002B3E07 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1078A33E1F9B8494002B3E07 /* Photo.swift */; };
 		1078A3411F9B856F002B3E07 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1078A3401F9B856F002B3E07 /* Photos.swift */; };
+		E024B4F91FA71D2400F2EB74 /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E024B4F81FA71D2400F2EB74 /* ResponseError.swift */; };
 		E04FA2A31F9984E400567838 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FA2A21F9984E400567838 /* AppDelegate.swift */; };
 		E04FA2A51F9984E400567838 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FA2A41F9984E400567838 /* SearchViewController.swift */; };
 		E04FA2A81F9984E400567838 /* SearchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E04FA2A61F9984E400567838 /* SearchViewController.storyboard */; };
@@ -58,6 +59,7 @@
 		106312391F9AECF70002400D /* CommonDefines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonDefines.swift; sourceTree = "<group>"; };
 		1078A33E1F9B8494002B3E07 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		1078A3401F9B856F002B3E07 /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
+		E024B4F81FA71D2400F2EB74 /* ResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
 		E04FA29F1F9984E400567838 /* PinterstLikeCollectionViewAndFlickrImageSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinterstLikeCollectionViewAndFlickrImageSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E04FA2A21F9984E400567838 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E04FA2A41F9984E400567838 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			children = (
 				E04FA2C31F99859A00567838 /* APIError.swift */,
 				E04FA2C41F99859A00567838 /* ClientError.swift */,
+				E024B4F81FA71D2400F2EB74 /* ResponseError.swift */,
 				E04FA2CB1F99859A00567838 /* JSONDecodeError.swift */,
 			);
 			path = Error;
@@ -315,6 +318,7 @@
 				E04FA2D21F99859A00567838 /* ClientError.swift in Sources */,
 				E04FA2DC1F99859A00567838 /* Result.swift in Sources */,
 				E04FA2D51F99859A00567838 /* FlickrClient.swift in Sources */,
+				E024B4F91FA71D2400F2EB74 /* ResponseError.swift in Sources */,
 				1063123A1F9AECF80002400D /* CommonDefines.swift in Sources */,
 				E04FA2D91F99859A00567838 /* JSONDecodeError.swift in Sources */,
 				E04FA2A31F9984E400567838 /* AppDelegate.swift in Sources */,
