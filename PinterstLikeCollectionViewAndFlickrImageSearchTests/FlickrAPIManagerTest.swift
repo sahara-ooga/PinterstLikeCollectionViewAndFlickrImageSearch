@@ -99,9 +99,7 @@ class FlickrAPIManagerTest: XCTestCase {
                 print(error)
                 XCTFail("fail to get images from keyword.")
             }
-            
         }
-
         self.waitForExpectations(timeout: 20, handler: nil)
     }
 }
