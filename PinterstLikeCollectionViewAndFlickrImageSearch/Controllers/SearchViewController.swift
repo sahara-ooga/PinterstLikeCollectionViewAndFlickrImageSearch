@@ -15,13 +15,15 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         searchViewProvider = SearchViewProvider()
         
         if let layout = collectionView.collectionViewLayout as? PinterestLayout{
             layout.delegate = searchViewProvider
         }
+        
+        collectionView.dataSource = searchViewProvider
+        
     }
 
     override func didReceiveMemoryWarning() {

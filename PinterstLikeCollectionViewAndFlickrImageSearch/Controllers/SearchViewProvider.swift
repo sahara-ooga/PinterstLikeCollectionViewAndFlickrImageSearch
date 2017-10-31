@@ -8,9 +8,36 @@
 
 import UIKit
 
-final class SearchViewProvider{
+final class SearchViewProvider:NSObject{
     //TODO: Diskで読み込んだデータで初期化する
     var photos = [UIImage]()
+}
+
+extension SearchViewProvider:UICollectionViewDataSource{
+    /// セクション数を返す
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
+        return photos.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if photos.count == 0{
+            let emptyCell = collectionView.dequeueReusableCell(withReuseIdentifier: EmptyCell.identifier,
+                                                               for: indexPath) as! EmptyCell
+            return emptyCell
+        }
+        
+        let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.identifier,
+                                                      for: indexPath) as! PhotoCell
+        photoCell.imageView.image = photos[indexPath.item]
+        return photoCell
+    }
+    
 }
 
 extension SearchViewProvider:PinterestLayoutDelegate{
