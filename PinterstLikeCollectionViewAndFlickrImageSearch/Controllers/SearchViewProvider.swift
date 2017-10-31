@@ -34,7 +34,7 @@ extension SearchViewProvider:UICollectionViewDataSource{
         
         let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.identifier,
                                                       for: indexPath) as! PhotoCell
-        photoCell.imageView.image = photos[indexPath.item]
+        photoCell.image = photos[indexPath.item]
         return photoCell
     }
     

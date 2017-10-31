@@ -137,7 +137,7 @@ extension FlickrAPIManager{
         search(keyword){result in
             switch result{
             case let .success(response):
-                print(response)
+                //print(response)
                 //画像の情報を画像に変換する
                 self.fetch(for: response){result in
                     completion(result)

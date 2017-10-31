@@ -8,9 +8,7 @@
 
 import Foundation
 
-protocol Identifier {
-    
-}
+protocol Identifier { }
 
 extension Identifier{
     static var identifier: String {

@@ -12,6 +12,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     var searchViewProvider:SearchViewProvider = SearchViewProvider()
+    let flickrAPIManager = FlickrAPIManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,17 @@ extension SearchViewController{
         }
         
         collectionView.dataSource = searchViewProvider
+        registerNib()
+    }
+    
+    /// Nibを登録する
+    private func registerNib() {
+        
+        let emptyCellNib = UINib(nibName: EmptyCell.nibName, bundle: Bundle.main)
+        collectionView.register(emptyCellNib, forCellWithReuseIdentifier: EmptyCell.identifier)
+        
+        let photoCellNib = UINib(nibName: PhotoCell.nibName, bundle: Bundle.main)
+        collectionView.register(photoCellNib, forCellWithReuseIdentifier: PhotoCell.identifier)
     }
 }
 
@@ -83,6 +95,18 @@ extension SearchViewController: UISearchBarDelegate {
         print(#function)
         if let searchText = searchBar.text {
             print("searchText:\(searchText)")
+            
+            // start to search images
+            flickrAPIManager.getImage(of: searchText)
+            {[unowned self] result in
+                switch result{
+                case .success(let images):
+                    self.searchViewProvider.photos = images
+                    self.collectionView.reloadData()
+                case .failure(let error):
+                    print(error)
+                }
+            }
         }
     }
     
@@ -93,8 +117,6 @@ extension SearchViewController: UISearchBarDelegate {
         print(#function)
         print(searchText)
         
-        //TODO: 検索処理の開始
-
     }
     
     /// キャンセルボタンをクリックしたときに呼ばれる

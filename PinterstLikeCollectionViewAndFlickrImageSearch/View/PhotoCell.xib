@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="265" height="261"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zop-rf-NrY">
+                    <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zop-rf-NrY">
                         <rect key="frame" x="0.0" y="0.0" width="265" height="261"/>
                     </imageView>
                 </subviews>
