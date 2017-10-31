@@ -11,10 +11,17 @@ import UIKit
 class SearchViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
+    var searchViewProvider:SearchViewProvider!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        searchViewProvider = SearchViewProvider()
+        
+        if let layout = collectionView.collectionViewLayout as? PinterestLayout{
+            layout.delegate = searchViewProvider
+        }
     }
 
     override func didReceiveMemoryWarning() {

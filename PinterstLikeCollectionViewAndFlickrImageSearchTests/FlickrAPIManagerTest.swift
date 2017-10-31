@@ -68,6 +68,7 @@ class FlickrAPIManagerTest: XCTestCase {
         let photos = Photos(page: 1, pages: 1, perpage: 1, total: "1", photoInfos: [photo])
         let response = FlickrImageSearchResponse(photos: photos, stat: "ok")
         self.callApiExpectation = self.expectation(description: "CallFlickrImageSearchApiAccess")
+        
         apiManager.fetch(for: response){result in
             switch result{
             case .success(let images):
@@ -78,6 +79,7 @@ class FlickrAPIManagerTest: XCTestCase {
             }
             
         }
+        
         self.waitForExpectations(timeout: 20, handler: nil)
 
     }

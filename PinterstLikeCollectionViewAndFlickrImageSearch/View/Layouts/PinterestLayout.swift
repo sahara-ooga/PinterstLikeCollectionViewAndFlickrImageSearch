@@ -66,7 +66,7 @@ extension PinterestLayout{
             
             let indexPath = IndexPath(item: item, section: 0)
             
-            // 4
+            // perform the frame calculation
             let photoHeight = delegate.collectionView(collectionView, heightForPhotoAtIndexPath: indexPath)
             let height = cellPadding * 2 + photoHeight
             let frame = CGRect(x: xOffset[column], y: yOffset[column], width: columnWidth, height: height)
@@ -83,5 +83,28 @@ extension PinterestLayout{
             
             column = column < (numberOfColumns - 1) ? (column + 1) : 0
         }
+    }
+    
+    /// the collection view calls this method after prepare() to determine which items are visible in the given rect.
+    ///
+    /// - Parameter rect: which will be displayed
+    /// - Returns: attributes which intersect with rect
+    override func layoutAttributesForElements(in rect: CGRect)
+        -> [UICollectionViewLayoutAttributes]? {
+        
+        var visibleLayoutAttributes = [UICollectionViewLayoutAttributes]()
+        
+        // Loop through the cache and look for items in the rect
+        for attributes in cache {
+            if attributes.frame.intersects(rect) {
+                visibleLayoutAttributes.append(attributes)
+            }
+        }
+        return visibleLayoutAttributes
+    }
+    
+    override func layoutAttributesForItem(at indexPath: IndexPath)
+        -> UICollectionViewLayoutAttributes? {
+        return cache[indexPath.item]
     }
 }
