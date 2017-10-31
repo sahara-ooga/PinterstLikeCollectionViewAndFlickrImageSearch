@@ -14,12 +14,17 @@ class SearchViewController: UIViewController {
     var searchViewProvider:SearchViewProvider = SearchViewProvider()
     let flickrAPIManager = FlickrAPIManager()
     
+    var mySingleTap: UITapGestureRecognizer?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Set up UI parts
         setupCollectionView()
         setupSearchBarConf()
+        
+        //to close keyboard when the view is tapped
+        setupSingleTap(view: self.view)
     }
 
     override func didReceiveMemoryWarning() {
@@ -85,6 +90,7 @@ extension SearchViewController{
     private func setupKeyboard() {
         searchBar.keyboardType = .default
     }
+    
 }
 
 // MARK: - UISearchBarDelegate
@@ -126,4 +132,57 @@ extension SearchViewController: UISearchBarDelegate {
     }
 }
 
+// MARK: - Close　Keyboard
+extension SearchViewController{
+    /// シングルタップのジェスチャー設定
+    /// キーボード以外をタップしてキーボードを閉じるため
+    ///
+    /// - Parameter view: タップするビュー
+    func setupSingleTap(view: UIView) {
+        mySingleTap = UITapGestureRecognizer(target: self,
+                                             action: #selector(onSingleTap))
+        mySingleTap?.delegate = self
+        mySingleTap?.numberOfTapsRequired = 1
+        
+        view.addGestureRecognizer(mySingleTap!)
+    }
+    
+    /// シングルタップイベントの処理をする
+    /// キーボードを閉じる
+    ///
+    /// - Parameter recognizer: ジェスチャーリコグナイザー
+    @objc func onSingleTap(recognizer: UITapGestureRecognizer) {
+        closeKeyboard()
+    }
+    
+    /// すべてのテキストフィールドのキーボードを閉じる
+    func closeKeyboard() {
+        searchBar.resignFirstResponder()
+    }
+}
 
+//--------------------------------------
+// MARK: - UIGestureRecognizerDelegate
+//--------------------------------------
+extension SearchViewController: UIGestureRecognizerDelegate {
+    
+    /// タッチを検知したときの処理を行う
+    /// キーボード表示中のみ有効にするため
+    ///
+    /// - Parameters:
+    ///   - gestureRecognizer: ジェスチャーリコグナイザー
+    ///   - touch: タッチ
+    /// - Returns: true 有効、 false 無効
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldReceive touch: UITouch) -> Bool {
+        if gestureRecognizer == mySingleTap {
+            if searchBar.isFirstResponder {
+                return true
+            }
+            else{
+                return false
+            }
+        }
+        return true
+    }
+}
