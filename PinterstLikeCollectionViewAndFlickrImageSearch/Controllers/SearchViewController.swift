@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class SearchViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
@@ -100,19 +101,8 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print(#function)
         if let searchText = searchBar.text {
-            print("searchText:\(searchText)")
-            
-            // start to search images
-            flickrAPIManager.getImage(of: searchText)
-            {[unowned self] result in
-                switch result{
-                case .success(let images):
-                    self.searchViewProvider.photos = images
-                    self.collectionView.reloadData()
-                case .failure(let error):
-                    print(error)
-                }
-            }
+            print("start search for:\(searchText)")
+            startSearch(searchText)
         }
     }
     
@@ -129,6 +119,30 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchBar.resignFirstResponder()
+    }
+}
+
+// MARK: - Kick Search process
+extension SearchViewController{
+    func startSearch(_ keyword:String) {
+        // インジケータのみのHUDを表示する
+        SVProgressHUD.show()
+        
+        // start to search images
+        flickrAPIManager.getImage(of: keyword)
+        {[unowned self] result in
+            switch result{
+            case .success(let images):
+                self.searchViewProvider.photos = images
+                self.collectionView.reloadData()
+                
+                // HUDを消去する（すぐ消す）
+                SVProgressHUD.dismiss()
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 
