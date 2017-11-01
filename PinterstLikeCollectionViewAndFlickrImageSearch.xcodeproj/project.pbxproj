@@ -18,6 +18,7 @@
 		106528551FA5C24E00FA7633 /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106528541FA5C24E00FA7633 /* PinterestLayout.swift */; };
 		1078A33F1F9B8494002B3E07 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1078A33E1F9B8494002B3E07 /* Photo.swift */; };
 		1078A3411F9B856F002B3E07 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1078A3401F9B856F002B3E07 /* Photos.swift */; };
+		984A7B57B7197BA22223064D /* Pods_PinterstLikeCollectionViewAndFlickrImageSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E13BE5903B05E9DBE9784067 /* Pods_PinterstLikeCollectionViewAndFlickrImageSearch.framework */; };
 		E024B4F91FA71D2400F2EB74 /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E024B4F81FA71D2400F2EB74 /* ResponseError.swift */; };
 		E04FA2A31F9984E400567838 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FA2A21F9984E400567838 /* AppDelegate.swift */; };
 		E04FA2A51F9984E400567838 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FA2A41F9984E400567838 /* SearchViewController.swift */; };
@@ -39,6 +40,7 @@
 		E04FA2E61F99C82100567838 /* log.txt in Resources */ = {isa = PBXBuildFile; fileRef = E04FA2E51F99C82100567838 /* log.txt */; };
 		E053CA391FA8129100BA4938 /* SearchViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E053CA381FA8129100BA4938 /* SearchViewProvider.swift */; };
 		E0950C9B1FA8461700E60F35 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0950C9A1FA8461700E60F35 /* Identifier.swift */; };
+		FFE86EECB2BA494000D8BC72 /* Pods_PinterstLikeCollectionViewAndFlickrImageSearchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE3B200764BF9022FFB29893 /* Pods_PinterstLikeCollectionViewAndFlickrImageSearchTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,10 @@
 		106528541FA5C24E00FA7633 /* PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
 		1078A33E1F9B8494002B3E07 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		1078A3401F9B856F002B3E07 /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
+		60FAB6369DAB5B6677515EDF /* Pods-PinterstLikeCollectionViewAndFlickrImageSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinterstLikeCollectionViewAndFlickrImageSearch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PinterstLikeCollectionViewAndFlickrImageSearch/Pods-PinterstLikeCollectionViewAndFlickrImageSearch.debug.xcconfig"; sourceTree = "<group>"; };
+		8C81732427EF59110345C220 /* Pods-PinterstLikeCollectionViewAndFlickrImageSearchTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinterstLikeCollectionViewAndFlickrImageSearchTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PinterstLikeCollectionViewAndFlickrImageSearchTests/Pods-PinterstLikeCollectionViewAndFlickrImageSearchTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B236B0A8BD124C16EF92F9DE /* Pods-PinterstLikeCollectionViewAndFlickrImageSearchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinterstLikeCollectionViewAndFlickrImageSearchTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PinterstLikeCollectionViewAndFlickrImageSearchTests/Pods-PinterstLikeCollectionViewAndFlickrImageSearchTests.release.xcconfig"; sourceTree = "<group>"; };
+		D499850AAD86B80DDD5223CB /* Pods-PinterstLikeCollectionViewAndFlickrImageSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinterstLikeCollectionViewAndFlickrImageSearch.release.xcconfig"; path = "Pods/Target Support Files/Pods-PinterstLikeCollectionViewAndFlickrImageSearch/Pods-PinterstLikeCollectionViewAndFlickrImageSearch.release.xcconfig"; sourceTree = "<group>"; };
 		E024B4F81FA71D2400F2EB74 /* ResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
 		E04FA29F1F9984E400567838 /* PinterstLikeCollectionViewAndFlickrImageSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinterstLikeCollectionViewAndFlickrImageSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E04FA2A21F9984E400567838 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +94,8 @@
 		E04FA2E51F99C82100567838 /* log.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = log.txt; sourceTree = "<group>"; };
 		E053CA381FA8129100BA4938 /* SearchViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewProvider.swift; sourceTree = "<group>"; };
 		E0950C9A1FA8461700E60F35 /* Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
+		E13BE5903B05E9DBE9784067 /* Pods_PinterstLikeCollectionViewAndFlickrImageSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinterstLikeCollectionViewAndFlickrImageSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE3B200764BF9022FFB29893 /* Pods_PinterstLikeCollectionViewAndFlickrImageSearchTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinterstLikeCollectionViewAndFlickrImageSearchTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				984A7B57B7197BA22223064D /* Pods_PinterstLikeCollectionViewAndFlickrImageSearch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFE86EECB2BA494000D8BC72 /* Pods_PinterstLikeCollectionViewAndFlickrImageSearchTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,12 +170,34 @@
 			path = Layouts;
 			sourceTree = "<group>";
 		};
+		2F24A58AD4F4186585109730 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				60FAB6369DAB5B6677515EDF /* Pods-PinterstLikeCollectionViewAndFlickrImageSearch.debug.xcconfig */,
+				D499850AAD86B80DDD5223CB /* Pods-PinterstLikeCollectionViewAndFlickrImageSearch.release.xcconfig */,
+				8C81732427EF59110345C220 /* Pods-PinterstLikeCollectionViewAndFlickrImageSearchTests.debug.xcconfig */,
+				B236B0A8BD124C16EF92F9DE /* Pods-PinterstLikeCollectionViewAndFlickrImageSearchTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		AAFE71087B9EB602E3826EFE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E13BE5903B05E9DBE9784067 /* Pods_PinterstLikeCollectionViewAndFlickrImageSearch.framework */,
+				EE3B200764BF9022FFB29893 /* Pods_PinterstLikeCollectionViewAndFlickrImageSearchTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E04FA2961F9984E400567838 = {
 			isa = PBXGroup;
 			children = (
 				E04FA2A11F9984E400567838 /* PinterstLikeCollectionViewAndFlickrImageSearch */,
 				E04FA2B61F9984E400567838 /* PinterstLikeCollectionViewAndFlickrImageSearchTests */,
 				E04FA2A01F9984E400567838 /* Products */,
+				2F24A58AD4F4186585109730 /* Pods */,
+				AAFE71087B9EB602E3826EFE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -253,9 +285,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E04FA2BC1F9984E400567838 /* Build configuration list for PBXNativeTarget "PinterstLikeCollectionViewAndFlickrImageSearch" */;
 			buildPhases = (
+				2C2B1CC8CD65AD2B27789E4C /* [CP] Check Pods Manifest.lock */,
 				E04FA29B1F9984E400567838 /* Sources */,
 				E04FA29C1F9984E400567838 /* Frameworks */,
 				E04FA29D1F9984E400567838 /* Resources */,
+				63880E2D72A20E4F0FF0B3B4 /* [CP] Embed Pods Frameworks */,
+				F163F2AD8D493CBB82FA6059 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -270,9 +305,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E04FA2BF1F9984E400567838 /* Build configuration list for PBXNativeTarget "PinterstLikeCollectionViewAndFlickrImageSearchTests" */;
 			buildPhases = (
+				B7B8FA97267BF44441E7791D /* [CP] Check Pods Manifest.lock */,
 				E04FA2AF1F9984E400567838 /* Sources */,
 				E04FA2B01F9984E400567838 /* Frameworks */,
 				E04FA2B11F9984E400567838 /* Resources */,
+				D60A7C2935DED09CAB91C9EB /* [CP] Embed Pods Frameworks */,
+				1F19B3A7B036EB42B6EA6CC3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -346,6 +384,99 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1F19B3A7B036EB42B6EA6CC3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PinterstLikeCollectionViewAndFlickrImageSearchTests/Pods-PinterstLikeCollectionViewAndFlickrImageSearchTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2C2B1CC8CD65AD2B27789E4C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		63880E2D72A20E4F0FF0B3B4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PinterstLikeCollectionViewAndFlickrImageSearch/Pods-PinterstLikeCollectionViewAndFlickrImageSearch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B7B8FA97267BF44441E7791D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D60A7C2935DED09CAB91C9EB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PinterstLikeCollectionViewAndFlickrImageSearchTests/Pods-PinterstLikeCollectionViewAndFlickrImageSearchTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F163F2AD8D493CBB82FA6059 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PinterstLikeCollectionViewAndFlickrImageSearch/Pods-PinterstLikeCollectionViewAndFlickrImageSearch-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E04FA29B1F9984E400567838 /* Sources */ = {
@@ -527,6 +658,7 @@
 		};
 		E04FA2BD1F9984E400567838 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60FAB6369DAB5B6677515EDF /* Pods-PinterstLikeCollectionViewAndFlickrImageSearch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -542,6 +674,7 @@
 		};
 		E04FA2BE1F9984E400567838 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D499850AAD86B80DDD5223CB /* Pods-PinterstLikeCollectionViewAndFlickrImageSearch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -557,6 +690,7 @@
 		};
 		E04FA2C01F9984E400567838 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C81732427EF59110345C220 /* Pods-PinterstLikeCollectionViewAndFlickrImageSearchTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -574,6 +708,7 @@
 		};
 		E04FA2C11F9984E400567838 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B236B0A8BD124C16EF92F9DE /* Pods-PinterstLikeCollectionViewAndFlickrImageSearchTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

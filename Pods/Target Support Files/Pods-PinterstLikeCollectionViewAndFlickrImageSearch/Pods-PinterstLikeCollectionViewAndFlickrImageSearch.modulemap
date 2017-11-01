@@ -1,0 +1,6 @@
+framework module Pods_PinterstLikeCollectionViewAndFlickrImageSearch {
+  umbrella header "Pods-PinterstLikeCollectionViewAndFlickrImageSearch-umbrella.h"
+
+  export *
+  module * { export * }
+}
