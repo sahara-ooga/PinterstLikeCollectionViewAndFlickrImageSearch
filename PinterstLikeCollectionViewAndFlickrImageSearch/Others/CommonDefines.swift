@@ -8,4 +8,5 @@
 
 struct CommonDefines {
     static let perPage = 50
+    static let photoInfoIsEmpty = "photoInfos is empty"
 }

@@ -5,4 +5,5 @@
   Created by Yuu Ogasa on 2017/11/01.
   Copyright © 2017年 SundayCarpenter. All rights reserved.
 */
-"search.no_image" = "該当する写真がありません。検索ワードを変更してお試しください。";
+"search.no_image.title" = "該当する写真がありません";
+"search.no_image.message" = "検索ワードを変更してお試しください。";

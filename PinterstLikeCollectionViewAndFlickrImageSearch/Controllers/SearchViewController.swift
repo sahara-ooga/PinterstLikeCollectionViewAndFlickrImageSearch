@@ -136,12 +136,45 @@ extension SearchViewController{
                 self.searchViewProvider.photos = images
                 self.collectionView.reloadData()
                 
-                // HUDを消去する（すぐ消す）
-                SVProgressHUD.dismiss()
+                
                 
             case .failure(let error):
+                //TODO:When search result is empty,show empty cell
+                
+//                if error == ClientError.responseParseError(ResponseError(message: CommonDefines.photoInfoIsEmpty)){
+//                    self.searchViewProvider.photos = []
+//                    self.collectionView.reloadData()
+//                    return
+//                }
+                
+                switch error{
+                case .responseParseError(let er as ResponseError):
+                    //when search gives nothing, show alert
+                    if er.message == CommonDefines.photoInfoIsEmpty{
+                        
+                        // メインスレッドで実行
+                        DispatchQueue.main.async {
+                            self.searchViewProvider.photos = []
+                            self.collectionView.reloadData()
+                            
+                            //show alert
+                            AlertController.showOkAlertMessage(title: NSLocalizedString(LocalizableKey.searchNoImageTitle, comment: ""),
+                                                               message: NSLocalizedString(LocalizableKey.searchNoImageMessage, comment: ""),
+                                                               vc: self,
+                                                               nextSelector: nil)
+                            return
+                        }
+                        
+                    }
+                default:
+                    print(error)
+                }
+                
                 print(error)
             }
+            
+            // HUDを消去する（すぐ消す）
+            SVProgressHUD.dismiss()
         }
     }
 }
@@ -199,4 +232,12 @@ extension SearchViewController: UIGestureRecognizerDelegate {
         }
         return true
     }
+}
+
+extension SearchViewController:AlertMessageDelegate{
+    func completeActionAlertMessage(action: UIAlertAction, nextSelector: Selector?) {
+        //do something
+    }
+    
+    
 }
