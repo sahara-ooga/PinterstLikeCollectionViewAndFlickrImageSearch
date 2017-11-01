@@ -79,12 +79,12 @@ extension SearchViewController{
     
     /// タイトルを付加する
     private func setupPrompt() {
-        searchBar.prompt = "タイトル"
+        //searchBar.prompt = "タイトル"
     }
     
     /// プレースホルダーを付加する
     private func setupPlaceHolder() {
-        searchBar.placeholder = "入力してください"
+        //searchBar.placeholder = "入力してください"
     }
     
     /// キーボードを付加する
