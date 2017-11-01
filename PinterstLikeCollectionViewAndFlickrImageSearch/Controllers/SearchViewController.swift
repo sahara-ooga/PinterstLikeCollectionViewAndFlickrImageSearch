@@ -136,8 +136,6 @@ extension SearchViewController{
                 self.searchViewProvider.photos = images
                 self.collectionView.reloadData()
                 
-                
-                
             case .failure(let error):
                 switch error{
                 case .responseParseError(let er as ResponseError):
@@ -232,4 +230,18 @@ extension SearchViewController:AlertMessageDelegate{
     }
     
     
+}
+
+// MARK: - Paging
+extension SearchViewController:UIScrollViewDelegate{
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard collectionView.isScrollEnd() else {
+            return
+        }
+        
+        if flickrAPIManager.shouldSearchMorePhotos,
+            let keyword = searchBar.text {
+            startSearch(keyword)
+        }
+    }
 }

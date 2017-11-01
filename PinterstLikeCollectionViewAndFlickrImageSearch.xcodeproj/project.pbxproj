@@ -22,6 +22,8 @@
 		E002ACBE1FA9917000E74E1C /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E002ACBD1FA9917000E74E1C /* AlertController.swift */; };
 		E002ACC01FA9924600E74E1C /* AlertMessageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E002ACBF1FA9924600E74E1C /* AlertMessageDelegate.swift */; };
 		E002ACC21FA9991000E74E1C /* LocalizableKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E002ACC11FA9991000E74E1C /* LocalizableKey.swift */; };
+		E00906321FA9AB9700956D16 /* UIScrollView+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00906311FA9AB9700956D16 /* UIScrollView+Helper.swift */; };
+		E00906341FA9C3C200956D16 /* FlickrAPIAccessState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00906331FA9C3C200956D16 /* FlickrAPIAccessState.swift */; };
 		E024B4F91FA71D2400F2EB74 /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E024B4F81FA71D2400F2EB74 /* ResponseError.swift */; };
 		E04FA2A31F9984E400567838 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FA2A21F9984E400567838 /* AppDelegate.swift */; };
 		E04FA2A51F9984E400567838 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FA2A41F9984E400567838 /* SearchViewController.swift */; };
@@ -76,6 +78,8 @@
 		E002ACBD1FA9917000E74E1C /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		E002ACBF1FA9924600E74E1C /* AlertMessageDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMessageDelegate.swift; sourceTree = "<group>"; };
 		E002ACC11FA9991000E74E1C /* LocalizableKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableKey.swift; sourceTree = "<group>"; };
+		E00906311FA9AB9700956D16 /* UIScrollView+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Helper.swift"; sourceTree = "<group>"; };
+		E00906331FA9C3C200956D16 /* FlickrAPIAccessState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrAPIAccessState.swift; sourceTree = "<group>"; };
 		E024B4F81FA71D2400F2EB74 /* ResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
 		E04FA29F1F9984E400567838 /* PinterstLikeCollectionViewAndFlickrImageSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinterstLikeCollectionViewAndFlickrImageSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E04FA2A21F9984E400567838 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -270,6 +274,7 @@
 				E04FA2C71F99859A00567838 /* FlickrClient.swift */,
 				E04FA2C91F99859A00567838 /* HTTPMethod.swift */,
 				106312351F9AE2AE0002400D /* FlickrAPIManager.swift */,
+				E00906331FA9C3C200956D16 /* FlickrAPIAccessState.swift */,
 			);
 			path = FlickrAPI;
 			sourceTree = "<group>";
@@ -288,6 +293,7 @@
 		E053CA361FA8124900BA4938 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				E00906311FA9AB9700956D16 /* UIScrollView+Helper.swift */,
 				E04FA2E11F999C2800567838 /* UIImage+Codable.swift */,
 				E0950C9A1FA8461700E60F35 /* Identifier.swift */,
 			);
@@ -531,11 +537,13 @@
 				E002ACC01FA9924600E74E1C /* AlertMessageDelegate.swift in Sources */,
 				10545D011F9CE37D000A758F /* PhotoCell.swift in Sources */,
 				E002ACC21FA9991000E74E1C /* LocalizableKey.swift in Sources */,
+				E00906341FA9C3C200956D16 /* FlickrAPIAccessState.swift in Sources */,
 				E04FA2D41F99859A00567838 /* FlickrAPI.swift in Sources */,
 				1078A3411F9B856F002B3E07 /* Photos.swift in Sources */,
 				E04FA2D71F99859A00567838 /* HTTPMethod.swift in Sources */,
 				E04FA2E21F999C2800567838 /* UIImage+Codable.swift in Sources */,
 				E04FA2D61F99859A00567838 /* FlickrImageSearchResponse.swift in Sources */,
+				E00906321FA9AB9700956D16 /* UIScrollView+Helper.swift in Sources */,
 				E04FA2D11F99859A00567838 /* APIError.swift in Sources */,
 				10545CFD1F9CE34D000A758F /* EmptyCell.swift in Sources */,
 				E0950C9B1FA8461700E60F35 /* Identifier.swift in Sources */,

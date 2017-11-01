@@ -22,4 +22,10 @@ class PhotoCell: UICollectionViewCell {
         super.awakeFromNib()
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        //delete image before reuse
+        self.imageView.image = nil
+    }
 }

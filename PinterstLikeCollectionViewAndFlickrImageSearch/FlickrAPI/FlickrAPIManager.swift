@@ -16,12 +16,40 @@ class FlickrAPIManager {
         let session = URLSession(configuration: configuration)
         return session
     }()
+    
+    private let client = FlickrClient()
+    
+    var state:FlickrAPIAccessState?
 }
 
 // MARK: - Image search and Fetch
 extension FlickrAPIManager{
     
-    /// Search photos related to keyWord via FlickrAPI
+    /// keyword -> [UIImage]
+    /// In most cases, this method is sufficient!😇
+    ///
+    /// - Parameters:
+    ///   - keyword: related to image
+    ///   - completion: handles [UIImage]
+    func getImage(of keyword:String,
+                  completion:@escaping (Result<[UIImage],ClientError>) -> Void) {
+        //まず画像の情報を取得
+        search(keyword){result in
+            switch result{
+            case let .success(response):
+                //print(response)
+                //画像の情報を画像に変換する
+                self.fetch(for: response){result in
+                    completion(result)
+                }
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    
+    /// Keyword -> PhotoInfos
     ///
     /// - Parameters:
     ///   - keyWord: search keyword
@@ -32,9 +60,6 @@ extension FlickrAPIManager{
                 to page:Int = 1,
                 perPage:Int = CommonDefines.perPage,
                 completionHandler:@escaping (Result<FlickrImageSearchResponse,ClientError>) -> Void) {
-        // APIクライアントの生成
-        let client = FlickrClient()
-        
         //リクエストの発行
         let request = FlickrAPI.SearchPhotos(text: keyWord,
                                              page: page,
@@ -47,7 +72,7 @@ extension FlickrAPIManager{
         }
     }
     
-    /// acquire images based on flickr image search response.
+    /// PhotoInfos -> [UImage]
     ///
     /// - Parameters:
     ///   - searchResponse: Flickr image search response
@@ -63,16 +88,13 @@ extension FlickrAPIManager{
         
         var images = [UIImage]()
         
-        // APIクライアントの生成
-        let client = FlickrClient()
-        
         let dispatchGroup = DispatchGroup()
         let dispatchQueue = DispatchQueue(label: "queue", attributes: .concurrent)
 
         for photo in photoInfos{
             dispatchGroup.enter()
             dispatchQueue.async(group: dispatchGroup){
-               // [weak self] in
+                [weak self] in
                 let baseURL = URL(string:photo.imageBaseURL)!
                 let path = photo.imagePath
                 let request = FlickrAPI.FetchPhoto(baseURL: baseURL,
@@ -80,7 +102,7 @@ extension FlickrAPIManager{
                                                    parameters: nil)
                 
                 // リクエストの送信
-                client.send(request: request){
+                self?.client.send(request: request){
 
                     result in
                         switch result {
@@ -106,11 +128,16 @@ extension FlickrAPIManager{
         }
     }
     
+    /// URL -> UIImage
+    ///
+    /// - Parameters:
+    ///   - url: flickr image url
+    ///   - completion: handling UIImage
     func fetch(to url:URL,completion:@escaping (UIImage?)->Void) {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = HTTPMethod.get.rawValue
         
-        let task = session.dataTask(with: urlRequest,
+        let task = client.session.dataTask(with: urlRequest,
                                     completionHandler: {data,response,error in
                                         
                                         switch (data,response,error){
@@ -131,20 +158,35 @@ extension FlickrAPIManager{
         task.resume()
     }
     
-    func getImage(of keyword:String,
-                  completion:@escaping (Result<[UIImage],ClientError>) -> Void) {
-        //まず画像の情報を取得
-        search(keyword){result in
-            switch result{
-            case let .success(response):
-                //print(response)
-                //画像の情報を画像に変換する
-                self.fetch(for: response){result in
-                    completion(result)
-                }
-            case let .failure(error):
-                completion(.failure(error))
-        }
-    }
 }
+
+
+// MARK: - Infomation to judge wheather Additional Search is needed
+extension FlickrAPIManager{
+    var shouldSearchMorePhotos:Bool {
+        if self.isWaitingForResponse {
+            return false
+        }
+        
+        return morePhotosExist
+    }
+    
+    var isWaitingForResponse:Bool{
+        /* リクエストを送信して、結果が返ってくるまではtrue
+         それ以外はfalse
+         
+         →TODO: フラグを立てて、リクエストを送信したら変更、結果が帰ってきたら変更
+        */
+        return state?.isWaitingForResponse ?? false
+    }
+    
+    var morePhotosExist:Bool {
+        /*
+         最新の検索結果を参照して、
+         これまでに検索し終わった件数が検索結果総数に達していなければtrue
+         
+         →TODO: 最新の検索結果を参照して計算
+        */
+        return state?.morePhotosExist ?? false
+    }
 }

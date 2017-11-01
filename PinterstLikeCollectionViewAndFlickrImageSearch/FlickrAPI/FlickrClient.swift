@@ -12,7 +12,7 @@
 import Foundation
 
 class FlickrClient {
-    private let session:URLSession = {
+    let session:URLSession = {
         let configuration = URLSessionConfiguration.default
         let session = URLSession(configuration: configuration)
         return session
