@@ -199,6 +199,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E002ACC31FA99C7100E74E1C /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				E002ACBD1FA9917000E74E1C /* AlertController.swift */,
+				E002ACBF1FA9924600E74E1C /* AlertMessageDelegate.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
+		E002ACC41FA99C8C00E74E1C /* Localize */ = {
+			isa = PBXGroup;
+			children = (
+				E0FF491E1FA98C2B00EAC095 /* Localizable.strings */,
+				E002ACC11FA9991000E74E1C /* LocalizableKey.swift */,
+			);
+			path = Localize;
+			sourceTree = "<group>";
+		};
 		E04FA2961F9984E400567838 = {
 			isa = PBXGroup;
 			children = (
@@ -283,10 +301,8 @@
 				E04FA2AB1F9984E400567838 /* LaunchScreen.storyboard */,
 				E04FA2E51F99C82100567838 /* log.txt */,
 				106312391F9AECF70002400D /* CommonDefines.swift */,
-				E0FF491E1FA98C2B00EAC095 /* Localizable.strings */,
-				E002ACBD1FA9917000E74E1C /* AlertController.swift */,
-				E002ACBF1FA9924600E74E1C /* AlertMessageDelegate.swift */,
-				E002ACC11FA9991000E74E1C /* LocalizableKey.swift */,
+				E002ACC41FA99C8C00E74E1C /* Localize */,
+				E002ACC31FA99C7100E74E1C /* Alert */,
 			);
 			path = Others;
 			sourceTree = "<group>";

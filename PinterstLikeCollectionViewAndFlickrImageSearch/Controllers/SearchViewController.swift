@@ -139,14 +139,6 @@ extension SearchViewController{
                 
                 
             case .failure(let error):
-                //TODO:When search result is empty,show empty cell
-                
-//                if error == ClientError.responseParseError(ResponseError(message: CommonDefines.photoInfoIsEmpty)){
-//                    self.searchViewProvider.photos = []
-//                    self.collectionView.reloadData()
-//                    return
-//                }
-                
                 switch error{
                 case .responseParseError(let er as ResponseError):
                     //when search gives nothing, show alert
@@ -173,7 +165,7 @@ extension SearchViewController{
                 print(error)
             }
             
-            // HUDを消去する（すぐ消す）
+            // HUDを消去する
             SVProgressHUD.dismiss()
         }
     }

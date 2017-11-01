@@ -26,11 +26,11 @@ extension SearchViewProvider:UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if photos.count == 0{
-            let emptyCell = collectionView.dequeueReusableCell(withReuseIdentifier: EmptyCell.identifier,
-                                                               for: indexPath) as! EmptyCell
-            return emptyCell
-        }
+//        if photos.count == 0{
+//            let emptyCell = collectionView.dequeueReusableCell(withReuseIdentifier: EmptyCell.identifier,
+//                                                               for: indexPath) as! EmptyCell
+//            return emptyCell
+//        }
         
         let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.identifier,
                                                       for: indexPath) as! PhotoCell
