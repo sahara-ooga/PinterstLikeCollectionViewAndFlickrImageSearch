@@ -130,11 +130,11 @@ extension SearchViewController{
         
         // start to search images
         flickrAPIManager.getImage(of: keyword)
-        {[unowned self] result in
+        {[weak self] result in
             switch result{
             case .success(let images):
-                self.searchViewProvider.photos = images
-                self.collectionView.reloadData()
+                self?.searchViewProvider.photos += images
+                self?.collectionView.reloadData()
                 
             case .failure(let error):
                 switch error{
@@ -144,13 +144,13 @@ extension SearchViewController{
                         
                         // メインスレッドで実行
                         DispatchQueue.main.async {
-                            self.searchViewProvider.photos = []
-                            self.collectionView.reloadData()
+                            self?.searchViewProvider.photos = []
+                            self?.collectionView.reloadData()
                             
                             //show alert
                             AlertController.showOkAlertMessage(title: NSLocalizedString(LocalizableKey.searchNoImageTitle, comment: ""),
                                                                message: NSLocalizedString(LocalizableKey.searchNoImageMessage, comment: ""),
-                                                               vc: self,
+                                                               vc: self!,
                                                                nextSelector: nil)
                             return
                         }
