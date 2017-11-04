@@ -10,9 +10,19 @@ import UIKit
 
 final class SearchViewProvider:NSObject{
     //TODO: Diskで読み込んだデータで初期化する
-    var photos = [UIImage]()
+    private var photos = [UIImage]()
 }
 
+// MARK: - Manage photos
+extension SearchViewProvider{
+    func append(_ photos:[UIImage]) {
+        self.photos += photos
+    }
+    
+    func makesPhotosEmpty(){
+        self.photos.removeAll()
+    }
+}
 extension SearchViewProvider:UICollectionViewDataSource{
     /// セクション数を返す
     func numberOfSections(in collectionView: UICollectionView) -> Int {

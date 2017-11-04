@@ -136,18 +136,18 @@ extension SearchViewController{
         {[weak self] result in
             switch result{
             case .success(let images):
-                self?.searchViewProvider.photos += images
+                self?.searchViewProvider.append(images)
                 self?.collectionView.reloadData()
                 
             case .failure(let error):
                 switch error{
-                case .responseParseError(let er as ResponseError):
+                case .responseParseError(let er):
                     //when search gives nothing, show alert
                     if er.message == CommonDefines.photoInfoIsEmpty{
                         
                         // メインスレッドで実行
                         DispatchQueue.main.async {
-                            self?.searchViewProvider.photos = []
+                            self?.searchViewProvider.makesPhotosEmpty()
                             self?.collectionView.reloadData()
                             
                             //show alert
