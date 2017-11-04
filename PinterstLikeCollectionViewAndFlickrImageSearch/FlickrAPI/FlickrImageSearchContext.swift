@@ -11,7 +11,6 @@ final class FlickrImageSearchContext{
     ///
     /// - Returns: true: オンライン, false: オフライン
     static func isReachable() -> Bool {
-        
         guard let reachabilityManager = NetworkReachabilityManager() else { return false }
             reachabilityManager.startListening()
             return reachabilityManager.isReachable
