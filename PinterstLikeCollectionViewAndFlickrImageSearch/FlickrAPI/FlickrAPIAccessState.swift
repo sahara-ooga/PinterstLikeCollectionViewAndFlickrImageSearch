@@ -6,9 +6,13 @@
 //  Copyright © 2017年 SundayCarpenter. All rights reserved.
 //
 
-struct FlickrAPIAccessState {
-    var latestSearchResponse:FlickrImageSearchResponse?
-    
+protocol FlickrAPIAccessState {
+    var latestSearchResponse:FlickrImageSearchResponse? {get set}
+    var isFetching:Bool { get }
+    var moreImagesExist:RelatedImagesExist { get }
+}
+
+extension FlickrAPIAccessState{
     var morePhotosExist:Bool {
         /*
          最新の検索結果を参照して、
@@ -26,13 +30,39 @@ struct FlickrAPIAccessState {
         return currentPage < totalPageNum
     }
     
-    var isWaitingForResponse:Bool = false
-//    var isWaitingForResponse:Bool{
-//        /* リクエストを送信して、結果が返ってくるまではtrue
-//         それ以外はfalse
-//
-//         →TODO: フラグを立てて、リクエストを送信したら変更、結果が帰ってきたら変更
-//         */
-//        return false
-//    }
+    //今何ページ目の情報を持っているのか？
+    var page:Int?{
+        guard let response = latestSearchResponse else {
+            return nil
+        }
+        return response.photos.page
+    }
+    
+    var totalPages:Int?{
+        guard let response = latestSearchResponse else {
+            return nil
+        }
+        return response.photos.pages
+    }
+    
+    var numOfPhotos:Int?{
+        guard let response = latestSearchResponse else {
+            return nil
+        }
+        return Int(response.photos.total)
+    }
+    
+    var perPages:Int?{
+        guard let response = latestSearchResponse else {
+            return nil
+        }
+        return response.photos.perpage
+    }
+    
+}
+
+enum RelatedImagesExist{
+    case exist
+    case notExist
+    case unknown
 }

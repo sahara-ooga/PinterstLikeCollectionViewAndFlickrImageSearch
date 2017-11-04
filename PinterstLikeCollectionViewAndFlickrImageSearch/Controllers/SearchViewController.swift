@@ -13,7 +13,10 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     var searchViewProvider:SearchViewProvider = SearchViewProvider()
-    let flickrAPIManager = FlickrAPIManager()
+    
+    var imageSearchContext:FlickrImageSearchContext{
+        return (UIApplication.shared.delegate as! AppDelegate).imageSearchContext
+    }
     
     var mySingleTap: UITapGestureRecognizer?
 
@@ -129,7 +132,7 @@ extension SearchViewController{
         SVProgressHUD.show()
         
         // start to search images
-        flickrAPIManager.getImage(of: keyword)
+        imageSearchContext.getImage(of: keyword)
         {[weak self] result in
             switch result{
             case .success(let images):
@@ -239,7 +242,7 @@ extension SearchViewController:UIScrollViewDelegate{
             return
         }
         
-        if flickrAPIManager.shouldSearchMorePhotos,
+        if imageSearchContext.shouldSearchMorePhotos,
             let keyword = searchBar.text {
             startSearch(keyword)
         }

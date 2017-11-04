@@ -18,8 +18,8 @@ class FlickrAPIManager {
     }()
     
     private let client = FlickrClient()
-    
-    var state:FlickrAPIAccessState?
+
+    var imageSearchResponse:FlickrImageSearchResponse? = nil
 }
 
 // MARK: - Image search and Fetch
@@ -34,12 +34,13 @@ extension FlickrAPIManager{
     func getImage(of keyword:String,
                   completion:@escaping (Result<[UIImage],ClientError>) -> Void) {
         //まず画像の情報を取得
-        search(keyword){result in
+        search(keyword){[weak self] result in
             switch result{
             case let .success(response):
                 //print(response)
+                self?.imageSearchResponse = response
                 //画像の情報を画像に変換する
-                self.fetch(for: response){result in
+                self?.fetch(for: response){result in
                     completion(result)
                 }
             case let .failure(error):
@@ -161,32 +162,4 @@ extension FlickrAPIManager{
 }
 
 
-// MARK: - Infomation to judge wheather Additional Search is needed
-extension FlickrAPIManager{
-    var shouldSearchMorePhotos:Bool {
-        if self.isWaitingForResponse {
-            return false
-        }
-        
-        return morePhotosExist
-    }
-    
-    var isWaitingForResponse:Bool{
-        /* リクエストを送信して、結果が返ってくるまではtrue
-         それ以外はfalse
-         
-         →TODO: フラグを立てて、リクエストを送信したら変更、結果が帰ってきたら変更
-        */
-        return state?.isWaitingForResponse ?? false
-    }
-    
-    var morePhotosExist:Bool {
-        /*
-         最新の検索結果を参照して、
-         これまでに検索し終わった件数が検索結果総数に達していなければtrue
-         
-         →TODO: 最新の検索結果を参照して計算
-        */
-        return state?.morePhotosExist ?? false
-    }
-}
+

@@ -10,6 +10,7 @@ import XCTest
 @testable import PinterstLikeCollectionViewAndFlickrImageSearch
 
 class FlickrImageSearchContextTests: XCTestCase {
+    let flickrImageSearchContext = FlickrImageSearchContext()
     
     override func setUp() {
         super.setUp()
@@ -25,5 +26,9 @@ class FlickrImageSearchContextTests: XCTestCase {
         XCTAssertTrue(FlickrImageSearchContext.isReachable())
     }
     
-    
+    func testTotalCounts(){
+//        flickrImageSearchContext
+        let expect = 135
+        
+    }
 }
