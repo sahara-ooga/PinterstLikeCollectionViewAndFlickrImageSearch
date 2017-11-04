@@ -37,8 +37,10 @@ class FlickrClient {
                                                 completion(Result(value: response))
                                             } catch let error as APIError{
                                                 completion(Result(error: .apiError(error)))
-                                            } catch{
+                                            } catch let error as ResponseError{
                                                 completion(Result(error: .responseParseError(error)))
+                                            } catch {
+                                                print(error)
                                             }
                                             
                                         default:
