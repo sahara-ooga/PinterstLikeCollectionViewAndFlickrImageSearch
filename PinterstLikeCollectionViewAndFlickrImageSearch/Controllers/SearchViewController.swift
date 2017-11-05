@@ -14,10 +14,6 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     var searchViewProvider:SearchViewProvider = SearchViewProvider()
     
-    var imageSearchContext:FlickrImageSearchContext{
-        return (UIApplication.shared.delegate as! AppDelegate).imageSearchContext
-    }
-    
     var mySingleTap: UITapGestureRecognizer?
 
     override func viewDidLoad() {
@@ -127,6 +123,10 @@ extension SearchViewController: UISearchBarDelegate {
 
 // MARK: - Kick Search process
 extension SearchViewController{
+    
+    /// 今何ページ目まで検索が終わっているか等、状態は気にせずリクエストすることに注意
+    ///
+    /// - Parameter keyword: 検索キーワード
     func startSearch(_ keyword:String) {
         // インジケータのみのHUDを表示する
         SVProgressHUD.show()
@@ -242,8 +242,7 @@ extension SearchViewController:UIScrollViewDelegate{
             return
         }
         
-        if imageSearchContext.shouldSearchMorePhotos,
-            let keyword = searchBar.text {
+        if let keyword = searchBar.text {
             startSearch(keyword)
         }
     }

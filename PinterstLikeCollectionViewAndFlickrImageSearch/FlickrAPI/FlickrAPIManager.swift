@@ -32,17 +32,21 @@ extension FlickrAPIManager{
     ///   - keyword: related to image
     ///   - completion: handles [UIImage]
     func getImage(of keyword:String,
+                  to page:Int = 1,
+                  perPage:Int = CommonDefines.perPage,
                   completion:@escaping (Result<[UIImage],ClientError>) -> Void) {
         //まず画像の情報を取得
-        search(keyword){[weak self] result in
+        search(keyword,to: page){[weak self] result in
             switch result{
             case let .success(response):
                 //print(response)
                 self?.imageSearchResponse = response
+                
                 //画像の情報を画像に変換する
                 self?.fetch(for: response){result in
                     completion(result)
                 }
+                
             case let .failure(error):
                 completion(.failure(error))
             }
@@ -80,6 +84,7 @@ extension FlickrAPIManager{
     ///   - completionHandler: manage images, which flickr image search shows
     func fetch(for searchResponse:FlickrImageSearchResponse,
                completionHandler:@escaping (Result<[UIImage],ClientError>)->Void) {
+        self.imageSearchResponse = searchResponse
         let photoInfos = searchResponse.photos.photoInfos
         
         if photoInfos.isEmpty {

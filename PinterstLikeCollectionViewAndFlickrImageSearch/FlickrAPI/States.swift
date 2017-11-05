@@ -36,4 +36,11 @@ struct State{
         let moreImagesExist: RelatedImagesExist = .notExist
         let isFetching = false
     }
+    
+    struct Errored: FlickrAPIAccessState {
+        var latestSearchResponse: FlickrImageSearchResponse? = nil
+        let isFetching: Bool = false
+        let error:Error
+        let moreImagesExist: RelatedImagesExist = .unknown
+    }
 }
