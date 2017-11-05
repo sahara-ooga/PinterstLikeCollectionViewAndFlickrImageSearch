@@ -87,7 +87,7 @@ extension FlickrImageSearchContext{
             //新しいキーワードで１ページ目を検索する
             self.state = State.Fetching()
             requestedKeyword = keyword
-            
+            let requestPage = 1
             flickrAPIManager.getImage(of: keyword,
                                       to: requestPage,
             perPage: perPage){[unowned self] result in
@@ -122,7 +122,8 @@ extension FlickrImageSearchContext{
         }
         
         // 次のページがある場合、既存のレスポンスのページをインクリメントしてリクエストする
-        guard let requestedPage = self.flickrAPIManager.imageSearchResponse?.photos.page else{
+        guard let requestedPage = self.flickrAPIManager.imageSearchResponse?.photos.page
+            else{
             let error = ClientError.flickrImageSearchContextError(.noResponse)
             self.state = State.Errored(latestSearchResponse: nil, error: error)
             completion(Result(error: error))
@@ -147,7 +148,7 @@ extension FlickrImageSearchContext{
                                             }
                                         }
                                         completion(Result(value: response))
-                                        
+
                                     case .failure(let error):
                                         completion(.failure(error))
                                     }
