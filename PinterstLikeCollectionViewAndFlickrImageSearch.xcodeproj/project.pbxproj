@@ -51,8 +51,6 @@
 		E053CA391FA8129100BA4938 /* SearchViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E053CA381FA8129100BA4938 /* SearchViewProvider.swift */; };
 		E05956D31FAAAE5900E4DF8A /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05956D21FAAAE5900E4DF8A /* NetworkReachabilityManager.swift */; };
 		E0950C9B1FA8461700E60F35 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0950C9A1FA8461700E60F35 /* Identifier.swift */; };
-		E0A3D20F1FAFF7080011ED46 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A3D20E1FAFF7080011ED46 /* NetworkManager.swift */; };
-		E0A3D2171FB0557D0011ED46 /* ImageSearchContextError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A3D2161FB0557D0011ED46 /* ImageSearchContextError.swift */; };
 		E0FF491C1FA98C2B00EAC095 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E0FF491E1FA98C2B00EAC095 /* Localizable.strings */; };
 		FFE86EECB2BA494000D8BC72 /* Pods_PinterstLikeCollectionViewAndFlickrImageSearchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE3B200764BF9022FFB29893 /* Pods_PinterstLikeCollectionViewAndFlickrImageSearchTests.framework */; };
 /* End PBXBuildFile section */
@@ -119,8 +117,6 @@
 		E053CA381FA8129100BA4938 /* SearchViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewProvider.swift; sourceTree = "<group>"; };
 		E05956D21FAAAE5900E4DF8A /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		E0950C9A1FA8461700E60F35 /* Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
-		E0A3D20E1FAFF7080011ED46 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		E0A3D2161FB0557D0011ED46 /* ImageSearchContextError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchContextError.swift; sourceTree = "<group>"; };
 		E0FF491D1FA98C2B00EAC095 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E0FF491F1FA98C5D00EAC095 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E13BE5903B05E9DBE9784067 /* Pods_PinterstLikeCollectionViewAndFlickrImageSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinterstLikeCollectionViewAndFlickrImageSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,11 +162,7 @@
 				E04FA2C31F99859A00567838 /* APIError.swift */,
 				E024B4F81FA71D2400F2EB74 /* ResponseError.swift */,
 				E04FA2CB1F99859A00567838 /* JSONDecodeError.swift */,
-<<<<<<< HEAD
 				1072D0C81FAEE78400CEDBA9 /* FlickrImageSearchContextError.swift */,
-=======
-				E0A3D2161FB0557D0011ED46 /* ImageSearchContextError.swift */,
->>>>>>> state
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -327,7 +319,7 @@
 		E053CA371FA8126400BA4938 /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				E0A3D2101FAFF71B0011ED46 /* Network */,
+				E05956D21FAAAE5900E4DF8A /* NetworkReachabilityManager.swift */,
 				E04FA2A91F9984E400567838 /* Assets.xcassets */,
 				E04FA2AB1F9984E400567838 /* LaunchScreen.storyboard */,
 				E04FA2E51F99C82100567838 /* log.txt */,
@@ -337,15 +329,6 @@
 				1072D0C61FAEA9D500CEDBA9 /* ImageSearchContextAccesible.swift */,
 			);
 			path = Others;
-			sourceTree = "<group>";
-		};
-		E0A3D2101FAFF71B0011ED46 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				E0A3D20E1FAFF7080011ED46 /* NetworkManager.swift */,
-				E05956D21FAAAE5900E4DF8A /* NetworkReachabilityManager.swift */,
-			);
-			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -576,12 +559,10 @@
 				10545D011F9CE37D000A758F /* PhotoCell.swift in Sources */,
 				E002ACC21FA9991000E74E1C /* LocalizableKey.swift in Sources */,
 				E00906341FA9C3C200956D16 /* FlickrAPIAccessState.swift in Sources */,
-				E0A3D20F1FAFF7080011ED46 /* NetworkManager.swift in Sources */,
 				E04FA2D41F99859A00567838 /* FlickrAPI.swift in Sources */,
 				1078A3411F9B856F002B3E07 /* Photos.swift in Sources */,
 				E04FA2D71F99859A00567838 /* HTTPMethod.swift in Sources */,
 				E04FA2E21F999C2800567838 /* UIImage+Codable.swift in Sources */,
-				E0A3D2171FB0557D0011ED46 /* ImageSearchContextError.swift in Sources */,
 				E04FA2D61F99859A00567838 /* FlickrImageSearchResponse.swift in Sources */,
 				E00906321FA9AB9700956D16 /* UIScrollView+Helper.swift in Sources */,
 				E05956D31FAAAE5900E4DF8A /* NetworkReachabilityManager.swift in Sources */,
@@ -758,10 +739,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 469GT6P4NA;
+				DEVELOPMENT_TEAM = KE8PEF6922;
 				INFOPLIST_FILE = PinterstLikeCollectionViewAndFlickrImageSearch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sundaycarpenter2.PinterstLikeCollectionViewAndFlickrImageSearch;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sundaycarpenter.PinterstLikeCollectionViewAndFlickrImageSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -774,10 +755,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 469GT6P4NA;
+				DEVELOPMENT_TEAM = KE8PEF6922;
 				INFOPLIST_FILE = PinterstLikeCollectionViewAndFlickrImageSearch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sundaycarpenter2.PinterstLikeCollectionViewAndFlickrImageSearch;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sundaycarpenter.PinterstLikeCollectionViewAndFlickrImageSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

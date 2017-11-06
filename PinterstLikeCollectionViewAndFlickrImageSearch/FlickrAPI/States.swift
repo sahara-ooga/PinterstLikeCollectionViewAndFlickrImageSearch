@@ -22,7 +22,7 @@ struct State{
         let isFetching = true
     }
 
-    struct PartialllyFetched: FlickrAPIAccessState {        
+    struct PartialllyFetched: FlickrAPIAccessState {
         var latestSearchResponse: FlickrImageSearchResponse?
         
         let moreImagesExist: RelatedImagesExist = .exist

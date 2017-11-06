@@ -9,13 +9,8 @@ import UIKit
 
 final class FlickrImageSearchContext{
     private var state:FlickrAPIAccessState = State.StandBy()
-<<<<<<< HEAD
     let flickrAPIManager = FlickrAPIManager()
     var requestedKeyword:String?
-=======
-    private let flickrAPIManager = FlickrAPIManager()
-    private var searchedKeyword:String?
->>>>>>> state
 }
 
 extension FlickrImageSearchContext{
@@ -45,12 +40,7 @@ extension FlickrImageSearchContext{
             return false
         }
         
-        switch state.moreImagesExist {
-        case .exist:
-            return true
-        default:
-            return false
-        }
+        return morePhotosExist
     }
     
     var isFetching:Bool{
@@ -62,14 +52,20 @@ extension FlickrImageSearchContext{
         return state.isFetching
     }
     
+    var morePhotosExist:Bool {
+        /*
+         最新の検索結果を参照して、
+         これまでに検索し終わった件数が検索結果総数に達していなければtrue
+         
+         →TODO: 最新の検索結果を参照して計算
+         */
+        return state.morePhotosExist
+    }
 }
 
 extension FlickrImageSearchContext{
     /// keyword -> [UIImage]
-<<<<<<< HEAD
     ///
-=======
->>>>>>> state
     ///
     /// - Parameters:
     ///   - keyword: related to image
@@ -77,7 +73,6 @@ extension FlickrImageSearchContext{
     func getImage(of keyword:String,
                   perPage:Int = CommonDefines.perPage,
                   completion:@escaping (Result<[UIImage],ClientError>) -> Void) {
-<<<<<<< HEAD
         if isFetching  {
             let error = ClientError.flickrImageSearchContextError(.alreadyFetching)
             completion(Result(error: error))
@@ -157,65 +152,6 @@ extension FlickrImageSearchContext{
                                     case .failure(let error):
                                         completion(.failure(error))
                                     }
-=======
-        if self.isFetching {
-            completion(Result(error: .searchContextError(.isLoading)))
-            return
-        }
-        
-        if self.state.moreImagesExist == .notExist {
-            completion(Result(error: .searchContextError(.noMorePhoto)))
-            return
-        }
-        
-        self.state = State.Fetching()
-        self.searchedKeyword = keyword
-        
-        flickrAPIManager.getImage(of: keyword){[unowned self] in
-            
-            if let response = self.flickrAPIManager.imageSearchResponse{
-                switch response.moreImagesExist{
-                case .exist:
-                    self.state = State.PartialllyFetched()
-                case .notExist:
-                    self.state = State.AllFetched()
-                case .unknown:
-                    self.state = State.AllFetched()
-                }
-            }
-            
-            completion($0)
-        }
-    }
-    
-    func getMoreImage(completion:@escaping (Result<[UIImage],ClientError>) -> Void) {
-        if self.isFetching {
-            completion(Result(error: .searchContextError(.isLoading)))
-            return
-        }
-        
-        if self.state.moreImagesExist == .notExist {
-            completion(Result(error: .searchContextError(.noMorePhoto)))
-            return
-        }
-        
-        self.state = State.Fetching()
-
-        flickrAPIManager.getImage(of: self.searchedKeyword!){[unowned self] in
-            
-            if let response = self.flickrAPIManager.imageSearchResponse{
-                switch response.moreImagesExist{
-                case .exist:
-                    self.state = State.PartialllyFetched()
-                case .notExist:
-                    self.state = State.AllFetched()
-                case .unknown:
-                    self.state = State.AllFetched()
-                }
-            }
-            
-            completion($0)
->>>>>>> state
         }
     }
     
