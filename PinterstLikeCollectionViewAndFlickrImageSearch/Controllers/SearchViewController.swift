@@ -237,6 +237,7 @@ extension SearchViewController:AlertMessageDelegate{
 
 // MARK: - Paging
 extension SearchViewController:UIScrollViewDelegate{
+    //if scroll to end, examine search bar
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard collectionView.isScrollEnd() else {
             return
@@ -244,6 +245,8 @@ extension SearchViewController:UIScrollViewDelegate{
         
         if imageSearchContext.shouldSearchMorePhotos,
             let keyword = searchBar.text {
+            //if keyword is not empty,search keyword
+            if keyword.isEmpty { return }
             startSearch(keyword)
         }
     }
