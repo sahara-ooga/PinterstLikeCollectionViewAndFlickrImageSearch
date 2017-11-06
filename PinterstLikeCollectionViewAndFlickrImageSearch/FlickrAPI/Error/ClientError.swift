@@ -10,4 +10,5 @@ enum ClientError:Error {
     case connectionError(Error)
     case responseParseError(Error)
     case apiError(APIError)
+    case searchContextError(ImageSearchContextError)
 }

@@ -9,7 +9,6 @@
 import UIKit
 
 final class SearchViewProvider:NSObject{
-    //TODO: Diskで読み込んだデータで初期化する
     var photos = [UIImage]()
 }
 

@@ -37,12 +37,14 @@ class FlickrClient {
                                                 completion(Result(value: response))
                                             } catch let error as APIError{
                                                 completion(Result(error: .apiError(error)))
-                                            } catch{
+                                            } catch let error as ResponseError{
                                                 completion(Result(error: .responseParseError(error)))
+                                            } catch {
+                                                assertionFailure("function:\(#function) error:\(error)")
                                             }
                                             
                                         default:
-                                            fatalError("invalid response combination \(String(describing: data)), \(String(describing: response)), \(String(describing: error)).)")
+                                            assertionFailure("invalid response combination \(String(describing: data)), \(String(describing: response)), \(String(describing: error)).)")
                                         }
         })
         
