@@ -9,7 +9,6 @@
 import UIKit
 
 final class SearchViewProvider:NSObject{
-    //TODO: Diskで読み込んだデータで初期化する
     private var photos = [UIImage]()
 }
 
@@ -21,6 +20,10 @@ extension SearchViewProvider{
     
     func makesPhotosEmpty(){
         self.photos.removeAll()
+    }
+    
+    func replace(with photos:[UIImage]) {
+        self.photos = photos
     }
 }
 extension SearchViewProvider:UICollectionViewDataSource{

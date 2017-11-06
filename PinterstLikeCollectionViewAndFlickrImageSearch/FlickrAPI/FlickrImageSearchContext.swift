@@ -27,20 +27,17 @@ extension FlickrImageSearchContext{
 
 // MARK: - Infomation to judge wheather Additional Search is needed
 extension FlickrImageSearchContext{
-    func shouldShearchMorePhotos(_ keyword:String) -> Bool {
-        if keyword != requestedKeyword{
+    var shouldSearchMorePhotos:Bool {
+        if self.isFetching {
+            return false
+        }
+        
+        switch state.moreImagesExist {
+        case .exist:
             return true
-        }
-        
-        if isFetching {
+        default:
             return false
         }
-        
-        guard keyword == requestedKeyword,!isFetching else {
-            return false
-        }
-        
-        return morePhotosExist
     }
     
     var isFetching:Bool{
@@ -51,108 +48,73 @@ extension FlickrImageSearchContext{
          */
         return state.isFetching
     }
-    
-    var morePhotosExist:Bool {
-        /*
-         最新の検索結果を参照して、
-         これまでに検索し終わった件数が検索結果総数に達していなければtrue
-         
-         →TODO: 最新の検索結果を参照して計算
-         */
-        return state.morePhotosExist
-    }
 }
 
 extension FlickrImageSearchContext{
     /// keyword -> [UIImage]
     ///
-    ///
     /// - Parameters:
     ///   - keyword: related to image
     ///   - completion: handles [UIImage]
     func getImage(of keyword:String,
-                  perPage:Int = CommonDefines.perPage,
                   completion:@escaping (Result<[UIImage],ClientError>) -> Void) {
-        if isFetching  {
-            let error = ClientError.flickrImageSearchContextError(.alreadyFetching)
-            completion(Result(error: error))
+        if self.isFetching {
+            completion(Result(error: .flickrImageSearchContextError(.alreadyFetching)))
+            return
         }
-                
-        // その検索キーワードですでに検索しているかどうか調べる
-        // 前回のキーワードが無い、または引数と前回のキーワードが異なる時
-        // １ページ目をリクエスト;
-        guard let rKeyword = requestedKeyword,
-            rKeyword == keyword else {
-            //前回キーワードが無いまたはキーワードが新しいケース。
-            //新しいキーワードで１ページ目を検索する
-            self.state = State.Fetching()
-            requestedKeyword = keyword
-            let requestPage = 1
-            flickrAPIManager.getImage(of: keyword,
-                                      to: requestPage,
-            perPage: perPage){[unowned self] result in
-                switch result{
-                case .success(let response):
-                    if let imageSearchResponse = self.flickrAPIManager.imageSearchResponse{
-                        switch imageSearchResponse.moreImagesExist{
-                        case .exist:
-                            self.state = State.PartialllyFetched()
-                        case .notExist:
-                            self.state = State.AllFetched()
-                        case .unknown:
-                            self.state = State.AllFetched()
-                        }
-                    }
-                    completion(Result(value: response))
-                    
-                case .failure(let error):
-                    completion(.failure(error))
+        
+        if self.state.moreImagesExist == .notExist {
+            completion(Result(error: .flickrImageSearchContextError(.noMorePage)))
+            return
+        }
+        
+        self.state = State.Fetching()
+        self.requestedKeyword = keyword
+        
+        flickrAPIManager.getImage(of: keyword){[unowned self] in
+            
+            if let response = self.flickrAPIManager.imageSearchResponse{
+                switch response.moreImagesExist{
+                case .exist:
+                    self.state = State.PartialllyFetched()
+                case .notExist:
+                    self.state = State.AllFetched()
+                case .unknown:
+                    self.state = State.AllFetched()
                 }
             }
-            return
-        }
-        
-        // ２回目以降(前回とキーワードが同じ)なら、
-        // まず次のページが有るかどうかを調べる
-        if morePhotosExist == false{
-            let error = ClientError.flickrImageSearchContextError(.noMorePage)
-            self.state = State.Errored(latestSearchResponse: nil, error: error)
-            completion(Result(error: error))
-            return
-        }
-        
-        // 次のページがある場合、既存のレスポンスのページをインクリメントしてリクエストする
-        guard let requestedPage = self.flickrAPIManager.imageSearchResponse?.photos.page
-            else{
-            let error = ClientError.flickrImageSearchContextError(.noResponse)
-            self.state = State.Errored(latestSearchResponse: nil, error: error)
-            completion(Result(error: error))
-            return
-        }
-        
-        let requestPage = requestedPage + 1
-        flickrAPIManager.getImage(of: keyword,
-                                  to: requestPage,
-                                  perPage: perPage)
-                                   {result in
-                                    switch result{
-                                    case .success(let response):
-                                        if let imageSearchResponse = self.flickrAPIManager.imageSearchResponse{
-                                            switch imageSearchResponse.moreImagesExist{
-                                            case .exist:
-                                                self.state = State.PartialllyFetched()
-                                            case .notExist:
-                                                self.state = State.AllFetched()
-                                            case .unknown:
-                                                self.state = State.AllFetched()
-                                            }
-                                        }
-                                        completion(Result(value: response))
-
-                                    case .failure(let error):
-                                        completion(.failure(error))
-                                    }
+            
+            completion($0)
         }
     }
     
+    func getMoreImage(completion:@escaping (Result<[UIImage],ClientError>) -> Void) {
+        if self.isFetching {
+            completion(Result(error: .flickrImageSearchContextError(.alreadyFetching)))
+            return
+        }
+        
+        if self.state.moreImagesExist == .notExist {
+            completion(Result(error: .flickrImageSearchContextError(.noMorePage)))
+            return
+        }
+        
+        self.state = State.Fetching()
+        
+        flickrAPIManager.getImage(of: self.requestedKeyword!){[unowned self] in
+            
+            if let response = self.flickrAPIManager.imageSearchResponse{
+                switch response.moreImagesExist{
+                case .exist:
+                    self.state = State.PartialllyFetched()
+                case .notExist:
+                    self.state = State.AllFetched()
+                case .unknown:
+                    self.state = State.AllFetched()
+                }
+            }
+            
+            completion($0)
+        }
+    }
 }

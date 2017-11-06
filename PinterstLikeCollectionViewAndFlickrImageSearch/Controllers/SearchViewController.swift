@@ -100,6 +100,12 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print(#function)
         if let searchText = searchBar.text {
+            
+            if searchText.isEmpty{
+                                print("keyword is empty")
+                                return
+                            }
+            
             print("start search for:\(searchText)")
             startSearch(searchText)
         }
@@ -127,16 +133,16 @@ extension SearchViewController{
     /// 今何ページ目まで検索が終わっているか等、状態は気にせずリクエストすることに注意
     ///
     /// - Parameter keyword: 検索キーワード
-    func startSearch(_ keyword:String) {
+    func startSearch(_ newKeyword:String) {
         // インジケータのみのHUDを表示する
         SVProgressHUD.show()
         
         // start to search images
-        imageSearchContext.getImage(of: keyword)
+        imageSearchContext.getImage(of: newKeyword)
         {[weak self] result in
             switch result{
             case .success(let images):
-                self?.searchViewProvider.append(images)
+                self?.searchViewProvider.replace(with: images)
                 self?.collectionView.reloadData()
                 
             case .failure(let error):
@@ -168,6 +174,32 @@ extension SearchViewController{
             
             // HUDを消去する
             SVProgressHUD.dismiss()
+        }
+    }
+    
+    func loadMorePage() {
+        // インジケータのみのHUDを表示する
+        SVProgressHUD.show()
+        
+        // start to search images
+        imageSearchContext.getMoreImage()
+            {[weak self] result in
+                switch result{
+                case .success(let images):
+                    self?.searchViewProvider.append(images)
+                    self?.collectionView.reloadData()
+                    
+                case .failure(let error):
+//                    switch error{
+//                    default:
+//                        print(error)
+//                    }
+                    
+                    print(error)
+                }
+                
+                // HUDを消去する
+                SVProgressHUD.dismiss()
         }
     }
 }
@@ -243,7 +275,10 @@ extension SearchViewController:UIScrollViewDelegate{
         }
         
         if let keyword = searchBar.text {
-            startSearch(keyword)
+            //if keyword is not empty,search keyword
+            if keyword.isEmpty { return }
+            
+            loadMorePage()
         }
     }
 }
