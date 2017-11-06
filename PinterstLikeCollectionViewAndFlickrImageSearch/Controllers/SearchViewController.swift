@@ -98,8 +98,14 @@ extension SearchViewController: UISearchBarDelegate {
     
     /// 検索をクリックしたときに呼ばれる
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print(#function)
+        //print(#function)
         if let searchText = searchBar.text {
+            
+            if searchText.isEmpty{
+                print("keyword is empty")
+                return
+            }
+            
             print("start search for:\(searchText)")
             startSearch(searchText)
         }
@@ -123,20 +129,28 @@ extension SearchViewController: UISearchBarDelegate {
 
 // MARK: - Kick Search process
 extension SearchViewController{
+<<<<<<< HEAD
     
     /// 今何ページ目まで検索が終わっているか等、状態は気にせずリクエストすることに注意
     ///
     /// - Parameter keyword: 検索キーワード
     func startSearch(_ keyword:String) {
+=======
+    func startSearch(_ newKeyword:String) {
+>>>>>>> state
         // インジケータのみのHUDを表示する
         SVProgressHUD.show()
         
         // start to search images
-        imageSearchContext.getImage(of: keyword)
+        imageSearchContext.getImage(of: newKeyword)
         {[weak self] result in
             switch result{
             case .success(let images):
+<<<<<<< HEAD
                 self?.searchViewProvider.append(images)
+=======
+                self?.searchViewProvider.photos = images
+>>>>>>> state
                 self?.collectionView.reloadData()
                 
             case .failure(let error):
@@ -159,6 +173,50 @@ extension SearchViewController{
                         }
                         
                     }
+                default:
+                    print(error)
+                }
+                
+                print(error)
+            }
+            
+            // HUDを消去する
+            SVProgressHUD.dismiss()
+        }
+    }
+    
+    func loadMorePage() {
+        // インジケータのみのHUDを表示する
+        SVProgressHUD.show()
+        
+        // start to search images
+        imageSearchContext.getMoreImage()
+        {[weak self] result in
+            switch result{
+            case .success(let images):
+                self?.searchViewProvider.photos += images
+                self?.collectionView.reloadData()
+                
+            case .failure(let error):
+                switch error{
+//                case .responseParseError(let er as ResponseError):
+                    //when search gives nothing, show alert
+//                    if er.message == CommonDefines.photoInfoIsEmpty{
+//
+//                        // メインスレッドで実行
+//                        DispatchQueue.main.async {
+//                            self?.searchViewProvider.photos = []
+//                            self?.collectionView.reloadData()
+//
+//                            //show alert
+//                            AlertController.showOkAlertMessage(title: NSLocalizedString(LocalizableKey.searchNoImageTitle, comment: ""),
+//                                                               message: NSLocalizedString(LocalizableKey.searchNoImageMessage, comment: ""),
+//                                                               vc: self!,
+//                                                               nextSelector: nil)
+//                            return
+//                        }
+//
+//                    }
                 default:
                     print(error)
                 }
@@ -237,13 +295,22 @@ extension SearchViewController:AlertMessageDelegate{
 
 // MARK: - Paging
 extension SearchViewController:UIScrollViewDelegate{
+    //if scroll to end, examine search bar
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard collectionView.isScrollEnd() else {
             return
         }
         
+<<<<<<< HEAD
         if let keyword = searchBar.text {
             startSearch(keyword)
+=======
+        if let keyword = searchBar.text{
+            //if keyword is not empty,search keyword
+            if keyword.isEmpty { return }
+
+            loadMorePage()
+>>>>>>> state
         }
     }
 }
