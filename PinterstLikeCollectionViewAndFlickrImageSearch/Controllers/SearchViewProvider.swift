@@ -26,6 +26,7 @@ extension SearchViewProvider{
         self.photos = photos
     }
 }
+
 extension SearchViewProvider:UICollectionViewDataSource{
     /// セクション数を返す
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -39,11 +40,6 @@ extension SearchViewProvider:UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        if photos.count == 0{
-//            let emptyCell = collectionView.dequeueReusableCell(withReuseIdentifier: EmptyCell.identifier,
-//                                                               for: indexPath) as! EmptyCell
-//            return emptyCell
-//        }
         
         let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.identifier,
                                                       for: indexPath) as! PhotoCell

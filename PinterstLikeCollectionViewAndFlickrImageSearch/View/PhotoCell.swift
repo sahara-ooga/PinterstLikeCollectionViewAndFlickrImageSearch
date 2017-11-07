@@ -18,6 +18,18 @@ class PhotoCell: UICollectionViewCell {
         }
     }
     
+    static func cellSize() -> CGSize {
+        let margin: CGFloat = 10
+        let screenSize = UIScreen.main.bounds
+        let screenPerWidth: CGFloat = 2 //3
+        let screenPerHeight: CGFloat = 5
+        
+        let cellWidth = (screenSize.width - margin) / screenPerWidth
+        let cellHeight = (screenSize.height - margin) / screenPerHeight
+        
+        return CGSize(width: cellWidth, height: cellHeight)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

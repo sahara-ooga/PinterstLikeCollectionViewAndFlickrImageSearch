@@ -38,12 +38,19 @@ class SearchViewController: UIViewController {
 // MARK: - CollectionView
 extension SearchViewController{
     private func setupCollectionView() {
+        #if false
         if let layout = collectionView.collectionViewLayout as? PinterestLayout{
             layout.delegate = searchViewProvider
         }
         
         collectionView.dataSource = searchViewProvider
         registerNib()
+        
+        #else
+            registerNib()
+            collectionView.dataSource = searchViewProvider
+            collectionView.reloadData()
+        #endif
     }
     
     /// Nibを登録する
@@ -54,6 +61,17 @@ extension SearchViewController{
         
         let photoCellNib = UINib(nibName: PhotoCell.nibName, bundle: Bundle.main)
         collectionView.register(photoCellNib, forCellWithReuseIdentifier: PhotoCell.identifier)
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension SearchViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return PhotoCell.cellSize()
     }
 }
 
