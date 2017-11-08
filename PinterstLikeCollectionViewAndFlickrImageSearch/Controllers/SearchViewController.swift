@@ -162,6 +162,11 @@ extension SearchViewController{
         // インジケータのみのHUDを表示する
         SVProgressHUD.show()
         
+        defer {
+            // HUDを消去する
+            SVProgressHUD.dismiss()
+        }
+        
         // start to search images
         imageSearchContext.getImage(of: newKeyword)
         {[weak self] result in
@@ -180,25 +185,35 @@ extension SearchViewController{
                         DispatchQueue.main.async {
                             self?.searchViewProvider.makesPhotosEmpty()
                             self?.collectionView.reloadData()
-                            
-                            //show alert
-                            AlertController.showOkAlertMessage(title: NSLocalizedString(LocalizableKey.searchNoImageTitle, comment: ""),
-                                                               message: NSLocalizedString(LocalizableKey.searchNoImageMessage, comment: ""),
-                                                               vc: self!,
-                                                               nextSelector: nil)
+                            self?.alert(LocalizableKey.searchNoImageTitle.localized,
+                                  message: LocalizableKey.searchNoImageMessage.localized)
                             return
                         }
                         
                     }
+                    
+                case .flickrImageSearchContextError(let error):
+                    DispatchQueue.main.async{
+                        switch error{
+                        case .alreadyFetching:return
+                        
+                        case .noMorePage:
+                            self?.alert(LocalizableKey.searchNoImageTitle.localized,
+                                        message: "")
+                            return
+                        case .noResponse:
+                            self?.alert(LocalizableKey.searchNoResponse,
+                                        message: "")
+                            return
+                        }
+                    }
+                    
                 default:
                     print(error)
                 }
                 
-                print(error)
             }
             
-            // HUDを消去する
-            SVProgressHUD.dismiss()
         }
     }
     
@@ -315,5 +330,14 @@ extension SearchViewController{
         
         //viewもリセット
         collectionView.reloadData()
+    }
+}
+
+extension SearchViewController{
+    func alert(_ title:String, message:String) {
+        AlertController.showOkAlertMessage(title: title,
+                                           message: message,
+                                           vc: self,
+                                           nextSelector: nil)
     }
 }

@@ -1,16 +1,15 @@
 //
-//  FlickrImageSearchContextTests.swift
+//  StringExtensiionTests.swift
 //  PinterstLikeCollectionViewAndFlickrImageSearchTests
 //
-//  Created by Yuu Ogasa on 2017/11/02.
+//  Created by Yuu Ogasa on 2017/11/08.
 //  Copyright © 2017年 SundayCarpenter. All rights reserved.
 //
 
 import XCTest
 @testable import PinterstLikeCollectionViewAndFlickrImageSearch
 
-class FlickrImageSearchContextTests: XCTestCase {
-    let flickrImageSearchContext = FlickrImageSearchContext()
+class StringExtensiionTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -22,8 +21,10 @@ class FlickrImageSearchContextTests: XCTestCase {
         super.tearDown()
     }
     
-    func testIsReachable() {
-        XCTAssertTrue(FlickrImageSearchContext.isReachable())
+    func testExample() {
+        let result = LocalizableKey.searchNoImageTitle.localized
+        let expect = "There is no image"
+        XCTAssertEqual(result, expect)
     }
-
+    
 }

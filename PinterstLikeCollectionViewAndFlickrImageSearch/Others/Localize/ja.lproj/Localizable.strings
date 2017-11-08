@@ -7,3 +7,5 @@
 */
 "search.no_image.title" = "該当する写真がありません";
 "search.no_image.message" = "検索ワードを変更してお試しください。";
+"search.no_more_page" = "これ以上ページがありません。";
+"search.no_response" = "検索結果が取得できませんでした。";

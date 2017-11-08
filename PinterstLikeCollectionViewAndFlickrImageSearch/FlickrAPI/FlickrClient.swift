@@ -53,6 +53,7 @@ class FlickrClient {
     
     func cancel(){
         session.invalidateAndCancel()
+        print("canceled session.")
         session = urlSession()
     }
     
