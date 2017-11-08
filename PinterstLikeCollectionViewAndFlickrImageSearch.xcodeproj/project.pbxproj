@@ -53,6 +53,7 @@
 		E0950C9B1FA8461700E60F35 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0950C9A1FA8461700E60F35 /* Identifier.swift */; };
 		E0AC2A4E1FB2D5F400144C08 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AC2A4D1FB2D5F400144C08 /* String+Localized.swift */; };
 		E0AC2A501FB2D68C00144C08 /* StringExtensiionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AC2A4F1FB2D68C00144C08 /* StringExtensiionTests.swift */; };
+		E0AC2A521FB2DEF300144C08 /* ConnectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AC2A511FB2DEF300144C08 /* ConnectionError.swift */; };
 		E0FF491C1FA98C2B00EAC095 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E0FF491E1FA98C2B00EAC095 /* Localizable.strings */; };
 		FFE86EECB2BA494000D8BC72 /* Pods_PinterstLikeCollectionViewAndFlickrImageSearchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE3B200764BF9022FFB29893 /* Pods_PinterstLikeCollectionViewAndFlickrImageSearchTests.framework */; };
 /* End PBXBuildFile section */
@@ -121,6 +122,7 @@
 		E0950C9A1FA8461700E60F35 /* Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
 		E0AC2A4D1FB2D5F400144C08 /* String+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
 		E0AC2A4F1FB2D68C00144C08 /* StringExtensiionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensiionTests.swift; sourceTree = "<group>"; };
+		E0AC2A511FB2DEF300144C08 /* ConnectionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionError.swift; sourceTree = "<group>"; };
 		E0FF491D1FA98C2B00EAC095 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E0FF491F1FA98C5D00EAC095 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E13BE5903B05E9DBE9784067 /* Pods_PinterstLikeCollectionViewAndFlickrImageSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinterstLikeCollectionViewAndFlickrImageSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				E04FA2C41F99859A00567838 /* ClientError.swift */,
+				E0AC2A511FB2DEF300144C08 /* ConnectionError.swift */,
 				E04FA2C31F99859A00567838 /* APIError.swift */,
 				E024B4F81FA71D2400F2EB74 /* ResponseError.swift */,
 				E04FA2CB1F99859A00567838 /* JSONDecodeError.swift */,
@@ -577,6 +580,7 @@
 				10545CFD1F9CE34D000A758F /* EmptyCell.swift in Sources */,
 				E0950C9B1FA8461700E60F35 /* Identifier.swift in Sources */,
 				E053CA391FA8129100BA4938 /* SearchViewProvider.swift in Sources */,
+				E0AC2A521FB2DEF300144C08 /* ConnectionError.swift in Sources */,
 				1072D0C71FAEA9D500CEDBA9 /* ImageSearchContextAccesible.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

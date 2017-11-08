@@ -162,63 +162,27 @@ extension SearchViewController{
         // インジケータのみのHUDを表示する
         SVProgressHUD.show()
         
-        defer {
-            // HUDを消去する
-            SVProgressHUD.dismiss()
-        }
-        
         // start to search images
         imageSearchContext.getImage(of: newKeyword)
         {[weak self] result in
+            
+            SVProgressHUD.dismiss()
+            
             switch result{
             case .success(let images):
-                self?.searchViewProvider.replace(with: images)
-                self?.collectionView.reloadData()
-                
-            case .failure(let error):
-                switch error{
-                case .responseParseError(let er):
-                    //when search gives nothing, show alert
-                    if er.message == CommonDefines.photoInfoIsEmpty{
-                        
-                        // メインスレッドで実行
-                        DispatchQueue.main.async {
-                            self?.searchViewProvider.makesPhotosEmpty()
-                            self?.collectionView.reloadData()
-                            self?.alert(LocalizableKey.searchNoImageTitle.localized,
-                                  message: LocalizableKey.searchNoImageMessage.localized)
-                            return
-                        }
-                        
-                    }
-                    
-                case .flickrImageSearchContextError(let error):
-                    DispatchQueue.main.async{
-                        switch error{
-                        case .alreadyFetching:return
-                        
-                        case .noMorePage:
-                            self?.alert(LocalizableKey.searchNoImageTitle.localized,
-                                        message: "")
-                            return
-                        case .noResponse:
-                            self?.alert(LocalizableKey.searchNoResponse,
-                                        message: "")
-                            return
-                        }
-                    }
-                    
-                default:
-                    print(error)
+                DispatchQueue.main.async{
+                    self?.searchViewProvider.replace(with: images)
+                    self?.collectionView.reloadData()
                 }
                 
+            case .failure(let error):
+                self?.handle(error)
             }
             
         }
     }
     
     func loadMorePage() {
-        // インジケータのみのHUDを表示する
         SVProgressHUD.show()
         
         // start to search images
@@ -230,16 +194,59 @@ extension SearchViewController{
                     self?.collectionView.reloadData()
                     
                 case .failure(let error):
-//                    switch error{
-//                    default:
-//                        print(error)
-//                    }
-                    
-                    print(error)
+                    self?.handle(error)
                 }
                 
                 // HUDを消去する
                 SVProgressHUD.dismiss()
+        }
+    }
+    
+    
+    func handle(_ error:ClientError) {
+        //do error handling
+        DispatchQueue.main.async {
+            
+            switch error{
+            case .connectionError(let error):
+                switch error{
+                case .isNotReachable:
+                    self.alert(LocalizableKey.noConnection,
+                                message: "")
+                }
+                
+            case .responseParseError(let er):
+                //when search gives nothing, show alert
+                if er.message == CommonDefines.photoInfoIsEmpty{
+                    
+                    // メインスレッドで実行
+                    self.searchViewProvider.makesPhotosEmpty()
+                    self.collectionView.reloadData()
+                    self.alert(LocalizableKey.searchNoImageTitle.localized,
+                                message: LocalizableKey.searchNoImageMessage.localized)
+                    return
+                    
+                    
+                }
+                
+            case .flickrImageSearchContextError(let error):
+                switch error{
+                case .alreadyFetching:return
+                    
+                case .noMorePage:
+                    self.alert(LocalizableKey.searchNoImageTitle.localized,
+                                message: "")
+                    return
+                case .noResponse:
+                    self.alert(LocalizableKey.searchNoResponse,
+                                message: "")
+                    return
+                }
+                
+                
+            default:
+                print(error)
+            }
         }
     }
 }
@@ -317,6 +324,15 @@ extension SearchViewController:UIScrollViewDelegate{
         if let keyword = searchBar.text {
             //if keyword is not empty,search keyword
             if keyword.isEmpty { return }
+            
+            do {
+                // check necesity to aditional search request
+                // in loadMorePage, show indicater.
+                // so the neccesity should be assured.
+                guard imageSearchContext.shouldSearchMorePhotos else {
+                    return
+                }
+            }
             
             loadMorePage()
         }

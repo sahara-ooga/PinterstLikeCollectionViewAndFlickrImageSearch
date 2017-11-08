@@ -7,7 +7,7 @@
 //
 
 enum ClientError:Error {
-    case connectionError(Error)
+    case connectionError(ConnectionError)
     case responseParseError(ResponseError)
     case apiError(APIError)
     case flickrImageSearchContextError(FlickrImageSearchContextError)

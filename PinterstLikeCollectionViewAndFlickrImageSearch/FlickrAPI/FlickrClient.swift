@@ -28,7 +28,7 @@ class FlickrClient {
                                         
                                         switch (data,response,error){
                                         case (_, _, let error?):
-                                            completion(Result(error: .connectionError(error)))
+                                            completion(Result(error: .connectionError(.isNotReachable)))
                                             
                                         case (let data?, let response?, _):
                                             do {

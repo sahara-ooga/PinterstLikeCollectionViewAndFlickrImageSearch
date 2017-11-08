@@ -17,7 +17,7 @@ extension FlickrImageSearchContext{
     /// 端末の通信状態を取得
     ///
     /// - Returns: true: オンライン, false: オフライン
-    static func isReachable() -> Bool {
+    var isReachable:Bool {
         guard let reachabilityManager = NetworkReachabilityManager()
             else { return false }
             reachabilityManager.startListening()
@@ -58,6 +58,10 @@ extension FlickrImageSearchContext{
     ///   - completion: handles [UIImage]
     func getImage(of keyword:String,
                   completion:@escaping (Result<[UIImage],ClientError>) -> Void) {
+        if !isReachable {
+            completion(Result(error: .connectionError(.isNotReachable)))
+        }
+        
         if self.isFetching {
             completion(Result(error: .flickrImageSearchContextError(.alreadyFetching)))
             return
