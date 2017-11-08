@@ -133,15 +133,22 @@ extension SearchViewController: UISearchBarDelegate {
     /// 日本語入力の場合、確定ボタンを押すタイミングで呼ばれる
     func searchBar(_ searchBar: UISearchBar,
                    textDidChange searchText: String) {
-        print(#function)
-        print(searchText)
-        
+//        print(#function)
+//        print(searchText)
+//        
     }
     
     /// キャンセルボタンをクリックしたときに呼ばれる
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchBar.resignFirstResponder()
+        
+        _ = cancelSearch()
+    }
+    
+    func cancelSearch(){
+        SVProgressHUD.dismiss()
+        imageSearchContext.cancelSearch()
     }
 }
 
@@ -298,5 +305,15 @@ extension SearchViewController:UIScrollViewDelegate{
             
             loadMorePage()
         }
+    }
+}
+
+extension SearchViewController{
+    func resetSearchResultAndView() {
+        //手元のデータを削除
+        searchViewProvider.makesPhotosEmpty()
+        
+        //viewもリセット
+        collectionView.reloadData()
     }
 }

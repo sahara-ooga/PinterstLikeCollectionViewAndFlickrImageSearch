@@ -118,3 +118,10 @@ extension FlickrImageSearchContext{
         }
     }
 }
+
+extension FlickrImageSearchContext{
+    func cancelSearch(){
+        flickrAPIManager.cancelSearch()
+        self.state = State.StandBy()
+    }
+}

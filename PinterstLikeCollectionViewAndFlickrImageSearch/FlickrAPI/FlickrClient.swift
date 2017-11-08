@@ -12,7 +12,7 @@
 import Foundation
 
 class FlickrClient {
-    let session:URLSession = {
+    var session:URLSession = {
         let configuration = URLSessionConfiguration.default
         let session = URLSession(configuration: configuration)
         return session
@@ -48,6 +48,17 @@ class FlickrClient {
                                         }
         })
         
-            task.resume()
+        task.resume()
+    }
+    
+    func cancel(){
+        session.invalidateAndCancel()
+        session = urlSession()
+    }
+    
+    private func urlSession() -> URLSession {
+        let configuration = URLSessionConfiguration.default
+        let session = URLSession(configuration: configuration)
+        return session
     }
 }

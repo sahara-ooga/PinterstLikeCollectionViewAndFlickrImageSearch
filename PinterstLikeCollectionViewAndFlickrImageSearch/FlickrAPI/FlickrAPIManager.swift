@@ -166,5 +166,11 @@ extension FlickrAPIManager{
     
 }
 
+extension FlickrAPIManager{
+    func cancelSearch(){
+        return client.cancel()
+    }
+}
+
 
 
