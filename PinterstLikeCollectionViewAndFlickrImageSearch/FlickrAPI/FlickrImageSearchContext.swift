@@ -11,6 +11,7 @@ final class FlickrImageSearchContext{
     private var state:FlickrAPIAccessState = State.StandBy()
     let flickrAPIManager = FlickrAPIManager()
     var requestedKeyword:String?
+    var currentPage = 1
 }
 
 extension FlickrImageSearchContext{
@@ -52,6 +53,7 @@ extension FlickrImageSearchContext{
     var morePageDoesExist:Bool{
         return state.morePhotosExist
     }
+    
 }
 
 extension FlickrImageSearchContext{
@@ -152,7 +154,7 @@ extension FlickrImageSearchContext{
 extension FlickrImageSearchContext:FlickrAPIAccessStateManagable{
     func update(to latestSearchResponse: FlickrImageSearchResponse) {
         self.state.latestSearchResponse = latestSearchResponse
+        self.currentPage = latestSearchResponse.photos.page
     }
-    
     
 }

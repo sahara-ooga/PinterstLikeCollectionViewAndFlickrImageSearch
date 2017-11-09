@@ -174,6 +174,7 @@ extension SearchViewController{
             switch result{
             case .success(let images):
                 DispatchQueue.main.async{
+                    self?.scrollToTop()
                     self?.searchViewProvider.replace(with: images)
                     self?.collectionView.reloadData()
                 }
@@ -345,6 +346,12 @@ extension SearchViewController:UIScrollViewDelegate{
             }
             
             loadMorePage()
+        }
+    }
+    
+    private func scrollToTop(){
+        if imageSearchContext.currentPage == 1{
+            collectionView.scrollToTop()
         }
     }
 }
