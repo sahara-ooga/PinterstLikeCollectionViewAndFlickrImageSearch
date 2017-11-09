@@ -5,7 +5,7 @@
 //  Created by yogasawara@stv on 2017/11/04.
 //  Copyright © 2017年 SundayCarpenter. All rights reserved.
 //
-struct State{
+enum State{
     struct StandBy: FlickrAPIAccessState {
         var latestSearchResponse: FlickrImageSearchResponse? = nil
         

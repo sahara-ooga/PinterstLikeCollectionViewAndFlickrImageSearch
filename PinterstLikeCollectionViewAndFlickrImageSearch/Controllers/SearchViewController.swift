@@ -39,13 +39,12 @@ class SearchViewController: UIViewController {
 extension SearchViewController{
     private func setupCollectionView() {
         #if false
-        if let layout = collectionView.collectionViewLayout as? PinterestLayout{
-            layout.delegate = searchViewProvider
-        }
-        
-        collectionView.dataSource = searchViewProvider
-        registerNib()
-        
+            if let layout = collectionView.collectionViewLayout as? PinterestLayout{
+                layout.delegate = searchViewProvider
+            }
+            
+            collectionView.dataSource = searchViewProvider
+            registerNib()
         #else
             registerNib()
             collectionView.dataSource = searchViewProvider
@@ -56,11 +55,15 @@ extension SearchViewController{
     /// Nibを登録する
     private func registerNib() {
         
-        let emptyCellNib = UINib(nibName: EmptyCell.nibName, bundle: Bundle.main)
-        collectionView.register(emptyCellNib, forCellWithReuseIdentifier: EmptyCell.identifier)
+        let emptyCellNib = UINib(nibName: EmptyCell.nibName,
+                                 bundle: Bundle.main)
+        collectionView.register(emptyCellNib,
+                                forCellWithReuseIdentifier: EmptyCell.identifier)
         
-        let photoCellNib = UINib(nibName: PhotoCell.nibName, bundle: Bundle.main)
-        collectionView.register(photoCellNib, forCellWithReuseIdentifier: PhotoCell.identifier)
+        let photoCellNib = UINib(nibName: PhotoCell.nibName,
+                                 bundle: Bundle.main)
+        collectionView.register(photoCellNib,
+                                forCellWithReuseIdentifier: PhotoCell.identifier)
     }
 }
 
@@ -238,9 +241,12 @@ extension SearchViewController{
                                 message: "")
                     return
                 case .noResponse:
-                    self.alert(LocalizableKey.searchNoResponse,
+                    self.alert(LocalizableKey.searchNoResponse.localized,
                                 message: "")
                     return
+                case .noPreviousPage:
+                    self.alert(LocalizableKey.someErrorHappened.localized,
+                               message: "")
                 }
                 
                 
@@ -307,7 +313,8 @@ extension SearchViewController: UIGestureRecognizerDelegate {
 }
 
 extension SearchViewController:AlertMessageDelegate{
-    func completeActionAlertMessage(action: UIAlertAction, nextSelector: Selector?) {
+    func completeActionAlertMessage(action: UIAlertAction,
+                                    nextSelector: Selector?) {
         //do something
     }
     
@@ -330,6 +337,10 @@ extension SearchViewController:UIScrollViewDelegate{
                 // in loadMorePage, show indicater.
                 // so the neccesity should be assured.
                 guard imageSearchContext.shouldSearchMorePhotos else {
+                    if imageSearchContext.morePageDoesExist{
+                        self.alert(LocalizableKey.searchNoMorePage, message: "")
+                    }
+                    
                     return
                 }
             }

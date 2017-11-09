@@ -15,4 +15,7 @@ struct LocalizableKey {
     
     //通信エラー
     static let noConnection = "no_connection"// = "通信できませんでした"
+    
+    // when no need to specify error
+    static let someErrorHappened = "some_error_happened" // = "エラーが発生しました"
 }

@@ -48,6 +48,10 @@ extension FlickrImageSearchContext{
          */
         return state.isFetching
     }
+    
+    var morePageDoesExist:Bool{
+        return state.morePhotosExist
+    }
 }
 
 extension FlickrImageSearchContext{
@@ -67,10 +71,14 @@ extension FlickrImageSearchContext{
             return
         }
         
-        if self.state.moreImagesExist == .notExist {
+        #if false
+        //新規検索時に、前の状態で弾いてしまう
+            if self.state.moreImagesExist == .notExist {
             completion(Result(error: .flickrImageSearchContextError(.noMorePage)))
             return
         }
+        
+        #endif
         
         self.state = State.Fetching()
         self.requestedKeyword = keyword
@@ -105,7 +113,13 @@ extension FlickrImageSearchContext{
         
         self.state = State.Fetching()
         
-        flickrAPIManager.getImage(of: self.requestedKeyword!){[unowned self] in
+        guard let previousPage = self.flickrAPIManager.imageSearchResponse?.photos.page else {
+            completion(Result(error: .flickrImageSearchContextError(.noPreviousPage)))
+            return
+        }
+        
+        let requestPage = previousPage + 1
+        flickrAPIManager.getImage(of: self.requestedKeyword!,to:requestPage){[unowned self] in
             
             if let response = self.flickrAPIManager.imageSearchResponse{
                 switch response.moreImagesExist{

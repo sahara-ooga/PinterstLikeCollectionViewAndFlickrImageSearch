@@ -9,4 +9,5 @@
 "search.no_image.message" = "Try different phrase.";
 "search.no_more_page" = "There is no more page";
 "search.no_response" = "There is no response";
-"no_connection" = "no network connection";
+"no_connection" = "No network connection";
+"some_error_happened" = "Some error happened";

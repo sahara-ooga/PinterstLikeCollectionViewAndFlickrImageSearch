@@ -10,4 +10,5 @@ enum FlickrImageSearchContextError:Error {
     case alreadyFetching
     case noMorePage
     case noResponse
+    case noPreviousPage
 }
