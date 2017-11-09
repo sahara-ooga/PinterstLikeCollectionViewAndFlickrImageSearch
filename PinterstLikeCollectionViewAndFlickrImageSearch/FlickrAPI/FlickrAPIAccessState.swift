@@ -12,13 +12,16 @@ protocol FlickrAPIAccessState {
     var moreImagesExist:RelatedImagesExist { get }
 }
 
+protocol FlickrAPIAccessStateManagable {
+    func update(to latestSearchResponse:FlickrImageSearchResponse)
+}
+
 extension FlickrAPIAccessState{
     var morePhotosExist:Bool {
         /*
          最新の検索結果を参照して、
-         これまでに検索し終わった件数が検索結果総数に達していなければtrue
-         
-         →TODO: 最新の検索結果を参照して計算
+         現ページが総ベージ数より小さければtrue
+         現ページが総ベージ数と等しければfalse
          */
         
         guard let response = latestSearchResponse else {

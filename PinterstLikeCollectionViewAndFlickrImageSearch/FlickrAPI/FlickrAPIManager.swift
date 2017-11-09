@@ -40,7 +40,6 @@ extension FlickrAPIManager{
             switch result{
             case let .success(response):
                 //print(response)
-                self?.imageSearchResponse = response
                 
                 //画像の情報を画像に変換する
                 self?.fetch(for: response){result in
@@ -72,8 +71,15 @@ extension FlickrAPIManager{
         
         // リクエストの送信
         client.send(request: request){
-            result in
+            [weak self] result in
             completionHandler(result)
+            
+            switch result{
+            case let .success(response):
+                self?.imageSearchResponse = response
+            default:
+                return
+            }
         }
     }
     
@@ -84,7 +90,6 @@ extension FlickrAPIManager{
     ///   - completionHandler: manage images, which flickr image search shows
     func fetch(for searchResponse:FlickrImageSearchResponse,
                completionHandler:@escaping (Result<[UIImage],ClientError>)->Void) {
-        self.imageSearchResponse = searchResponse
         let photoInfos = searchResponse.photos.photoInfos
         
         if photoInfos.isEmpty {

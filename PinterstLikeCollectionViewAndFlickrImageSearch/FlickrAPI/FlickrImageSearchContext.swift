@@ -94,6 +94,9 @@ extension FlickrImageSearchContext{
                 case .unknown:
                     self.state = State.AllFetched()
                 }
+                
+                self.update(to: response)
+
             }
             
             completion($0)
@@ -130,6 +133,8 @@ extension FlickrImageSearchContext{
                 case .unknown:
                     self.state = State.AllFetched()
                 }
+                
+                self.update(to: response)
             }
             
             completion($0)
@@ -142,4 +147,12 @@ extension FlickrImageSearchContext{
         flickrAPIManager.cancelSearch()
         self.state = State.StandBy()
     }
+}
+
+extension FlickrImageSearchContext:FlickrAPIAccessStateManagable{
+    func update(to latestSearchResponse: FlickrImageSearchResponse) {
+        self.state.latestSearchResponse = latestSearchResponse
+    }
+    
+    
 }

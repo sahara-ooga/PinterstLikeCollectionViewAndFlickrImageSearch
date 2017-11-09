@@ -332,15 +332,14 @@ extension SearchViewController:UIScrollViewDelegate{
             //if keyword is not empty,search keyword
             if keyword.isEmpty { return }
             
+            // ここに来る時点では、
+            // - 完全に通信が終わって最後まで行き着いたとき
+            // - 行き着いてリクエストが始まっている
+            // 場合がある。後者の場合、ここで「次のページが有るかどうか」を判定するのは不適切になる
+            // ここでは、「すでにフェッチを開始しているかどうか」だけを見るべき
             do {
                 // check necesity to aditional search request
-                // in loadMorePage, show indicater.
-                // so the neccesity should be assured.
-                guard imageSearchContext.shouldSearchMorePhotos else {
-                    if imageSearchContext.morePageDoesExist{
-                        self.alert(LocalizableKey.searchNoMorePage, message: "")
-                    }
-                    
+                if imageSearchContext.isFetching  {
                     return
                 }
             }
